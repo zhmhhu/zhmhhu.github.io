@@ -232,7 +232,7 @@ margin:30px;
     内容1
 &lt;/div&gt;
 </code></pre><p>显示结果为：</p>
-<p><img src="http://images2017.cnblogs.com/blog/835911/201801/835911-20180121211517099-2105418309.png" alt=""></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fsuef2ol9pj30ah03u744.jpg" alt=""></p>
 <p>父元素div1和子元素div2的上外边距之间没有边框或内边距阻隔，导致两者的上外边距合并，从而导致父元素div1至其上部元素的距离变为30px（两者合并取大值）。如果父元素有上边框或上外边距，则不会发生外边距合并。</p>
 <h2 id="3-空元素的外边距合并"><a href="#3-空元素的外边距合并" class="headerlink" title="3 空元素的外边距合并"></a>3 空元素的外边距合并</h2><p>假设有一个空元素，它有外边距，但是没有边框或填充。在这种情况下，上外边距与下外边距就碰到了一起，它们会发生合并。</p>
 <pre><code>&lt;!-- sytle.css --&gt;
@@ -248,7 +248,7 @@ border:1px solid gray;
 &lt;div class=&apos;div1&apos;&gt;内容1&lt;/div&gt;
 &lt;div class=&apos;div2&apos;&gt;&lt;/div&gt;
 &lt;div class=&apos;div1&apos;&gt;内容1&lt;/div&gt;
-</code></pre><p>显示为：<br><img src="http://images2017.cnblogs.com/blog/835911/201801/835911-20180121212611349-161140052.jpg" alt=""></p>
+</code></pre><p>显示为：<br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fsuef3oxawj30e702et8i.jpg" alt=""></p>
 <p>元素div2的上下边距合并，边框变成了一条直线</p>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>只有普通文档流中块元素的垂直外边距才会发生外边距合并。行内元素、浮动元素或绝对定位之间的外边距不会合并。因为CSS 的 外边距合并 设计之初就是为实现文本排版的段落间距而提供的特性。理解了这一设计意图，也就能理解哪些情况会发生外边距合并以及如何利用这一特性。但是明白它的用途就可以知道它是非常有用的、不可能被舍弃的特性。实际上这个特性还会进化，CSS3支持竖排文本，对于竖排文本来说，collapse应该发生在水平方向而不是垂直方向。</p>
 
