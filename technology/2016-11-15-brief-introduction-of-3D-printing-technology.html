@@ -49,11 +49,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>css中的定位与浮动 - 赵小生的博客</title>
+<title>3d打印技术科普 - 赵小生的博客</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="本文主要讲述CSS中的三种定位样式static、relative和absolute的区别以及浮动元素的特征。">
+<meta name="description " content="目前市场上的快速成型技术分为3DP 三维印刷技术、SLS选区激光烧结技术、 SLA立体平版印刷技术、DLP激光成型技术、FDM熔融层积成型技术等。">
 </head>
 <body>
 <div id="nav">
@@ -88,7 +88,7 @@
         
         <h1 class="cover-siteName">赵小生的博客</h1>
         <h3 class="cover-siteTitle">传播科技，关注人文</h3>
-        <p class="cover-siteDesc">一个关注技术与人文的博客</p>
+        <p class="cover-siteDesc">写更少的代码，过更好的生活</p>
         <div class="cover-sns">
             
             <div class="btn btn-weibo">
@@ -118,11 +118,11 @@
         
             
                 <li class="">
-                    <a href="/categories/big-front-end" data-name="前端">前端</a>
+                    <a href="/categories/coding" data-name="代码">代码</a>
                 </li>
             
                 <li class="">
-                    <a href="/categories/server-side" data-name="后台">后台</a>
+                    <a href="/categories/technology" data-name="科技">科技</a>
                 </li>
             
                 <li class="">
@@ -185,116 +185,44 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
-                    <span title="最后编辑于2018-01-24">2018-01-24</span>
+                    <span title="最后编辑于2016-11-15">2016-11-15</span>
                 </p>
-                <p>在科技和人文的世界里翱翔</p>
+                <p>不会讲故事的程序员不是好的水利工程师</p>
             </div>
-            <h2 class="post-title">CSS中的定位与浮动</h2>
+            <h2 class="post-title">3D打印技术科普</h2>
             <div class="post-meta">
-                本文总共2676个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共1928个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>本文主要讲述CSS中的三种定位样式static、relative和absolute的区别以及浮动元素的特征。</p>
-<h2 id="定位样式"><a href="#定位样式" class="headerlink" title="定位样式"></a>定位样式</h2><p>CSS中定位样式position的取值有三个，默认值：static，相对定位：relative，绝对定位：absolute。</p>
-<ol>
-<li><p>static： 采用默认定位时，一般可以不用设置position样式。 各个元素是按照文档流的形式从上往下排，同时保证块状元素独占一行的原则。</p>
-</li>
-<li><p>relative : 生成相对定位的元素，相对于其正常位置进行定位，同时配合top, bottom, left和right样式完成定位。它不会影响同一容器中其他元素的定位。<br>相对定位元素并没有脱离文档流，其参造物是其本身，不管你怎么移动，它原有的位置还是会留着，父容器对其布局影响照旧。</p>
-</li>
-<li><p>absolute：对于绝对定位的元素，则需要分其的父元素及以上元素的定位情况来说：</p>
-<ol>
-<li>父元素中有设置了Position属性，并且属性值为 absolute 或 relative的时候，那么子元素相对于该父元素来进行定位。</li>
-<li>父元素没有设置非static的Position属性，则以其第一个设置了非static的Position属性的祖先元素来进行定位。如果不存在一个有着position属性的祖先元素，那么那就会以body为定位对象，按照浏览器的窗口进行定位。<br>绝对定位是将元素彻底从文档流删除，并相对于其父元素定位（父元素可能是文档中的另一个元素或者是初始父元素，比如body），元素原先在正常文档流中所占的空间会关闭，就好像该元素原来不存在一样，该元素再也不会影响父元素中其他元素的布局了。</li>
-</ol>
-</li>
-</ol>
-<h2 id="浮动元素"><a href="#浮动元素" class="headerlink" title="浮动元素"></a>浮动元素</h2><ol>
-<li><p>假如在一行之上只有极少的空间可供浮动元素，那么这个元素会跳至下一行，这个过程会持续到某一行拥有足够的空间为止。</p>
-</li>
-<li><p>浮动元素会生成一个块级框，而不论它本身是何种元素。如果浮动非替换元素，则要指定一个明确的宽度；否则，它们会尽可能地窄。</p>
-</li>
-<li><p>如果浮动元素跳过了这一行，那么浏览器就认为这一行没有足够的空间，其他div在浮动过程中会自动跳过这一行，即使该行还有空间容纳其他div。</p>
-</li>
-<li><p>浮动元素是脱离文档流的，脱离文档流的元素没有实际高度，不会把父元素撑开。对于浮动属性来说，位置属性（left/top/right/bottom）是没有用的。</p>
-</li>
-<li><p>浮动元素之后的文字内容，如果是汉字则会自动换行； 如果是连续的数字或英文字母，则不会换行，设置word-wrap : break-word;属性会使内容强制换行。</p>
-</li>
-</ol>
-<p>看下面的例子。</p>
-<pre><code>&lt;style&gt; 
-#container {  
-position:relative;  
-width:300px;  
-height:100px;  
-background:#039;  
-}  
-#A {  
-float:left;  
-top:0;  
-left:0;  
-width:50px;  
-height:40px;  
-background:#C00;  
-}  
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;  
-&lt;div id=&quot;container&quot;&gt;  
-&lt;div id=&quot;A&quot;&gt;你好&lt;/div&gt;  
-&lt;div id=&quot;B&quot;&gt;  
-1234567890abcdabcdabcdabcdabcdabcdabcdabcd&lt;/div&gt;  
-&lt;/body&gt; 
-</code></pre><p> <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fsuef417c7j308n03bmwz.jpg" alt="图片"></p>
-<p> 原本应该环绕在红色块周围的文字因不能换行而显示在其下方，并且部分文字被容器遮住了。</p>
-<h3 id="浮动元素和绝对定位的区别"><a href="#浮动元素和绝对定位的区别" class="headerlink" title="浮动元素和绝对定位的区别"></a>浮动元素和绝对定位的区别</h3><p>浮动元素设计之初是为了使文本环绕图像排版，而后来的CSS允许浮动任何元素。理解了这一设计原则，就能理解它与其他定位方式的区别了。</p>
-<ol>
-<li>绝对定位是将元素彻底从文档流删除，并相对于其包含块定位（包含块可能是文档中的另一个元素或者是初始包含块），元素原先在正常文档流中所占的空间会关闭，就好像该元素原来不存在一样，该元素再也不会影响其他元素的布局了。</li>
-<li>浮动，会以某种方式将浮动元素从文档的正常流中删除，并把浮动元素向左边和右边浮动，不过它们还是对文档的其余部分有影响。当一个元素浮动时，其他内容会“环绕”该元素。</li>
-</ol>
-<p>看下面的例子</p>
-<pre><code>&lt;style&gt;
-body {  
-    color:#FFF;  
-}  
-#container {  
-    position:relative;  
-    width:300px;  
-    height:100px;  
-    background:#039;  
-}  
-#A {  
-    position:absolute;  
-    top:0;  
-    left:0;  
-    width:50px;  
-    height:40px;  
-    background:#C00;  
-}  
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;  
-&lt;div id=&quot;container&quot;&gt;  
-    &lt;div id=&quot;A&quot;&gt;你好&lt;/div&gt;  
-    &lt;div id=&quot;B&quot;&gt;  
-    浮动元素和绝对定位的区别浮动元素和绝对定位的区别浮动元素和绝对定位的区别浮动元素和绝对定位的区别&lt;/div&gt;  
-&lt;/body&gt; 
-</code></pre><p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fsuef4is7nj308y03da9w.jpg" alt="图片1"></p>
-<p>把A元素的定位改成浮动后，其后的内容会环绕该元素。</p>
-<pre><code> #A {  
-    float:left;  
-    top:0;  
-    left:0;  
-    width:50px;  
-    height:40px;  
-    background:#C00;  
-} 
-</code></pre><p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fsuef5iqgrj308r035dfo.jpg" alt="图片2"></p>
-<p>下面顺便引出<strong>文本流和文档流</strong>的概念。</p>
-<p>文档流是相对于盒子模型讲的。</p>
-<p>文本流是相对于文子段落讲的。</p>
-<p>元素浮动之后，会让它跳出文档流，也就是说当它后面还有元素时，其他元素会无视它所占据了的区域，直接在它身下布局。但是文字却会认同浮动元素所占据的区域，围绕它布局，也就是没有拖出文本流。</p>
-<p>但是绝对定位后，不仅元素盒子会拖出文档流，文字也会出文本流。那么后面元素的文本就不会在认同它的区域位置，会直接在它后面布局，不会在环绕。</p>
+            <p>自从上次收拾房间时无意间找出了被遗弃很久的3D打印模型之后，就想起自己曾经对3D打印技术痴迷过一段时间，后来因为自己并不是从事这个行业，所以只是把它当做一种兴趣爱好而了解了一个大概。</p>
+<p>在那段时间，曾经参加过一个创客组织举办的交流会，会上有人分享了目前流行的几种3D打印技术。今天我又收集了一点资料，稍作科普。</p>
+<p>3D打印技术，说简单也简单，说复杂也可以很复杂，本质上来说，都是以数字模型文件为基础，运用各种可塑或者可粘合材料，通过逐层打印的方式来构造与模型相对应的物体。只不过，在众多不同类型的3D打印技术中，所使用的原理和成型材料有所区别。有的打印效果很精确，有的略显粗糙，有的可以使用金属、陶瓷等多种材料，有的只能使用类似于塑料的可塑性材料。</p>
+<p>目前市场上的快速成型技术分为3DP 三维印刷技术、SLS选区激光烧结技术、 SLA立体平版印刷技术、DLP激光成型技术、FDM熔融层积成型技术等。下面就简单介绍一下各种类型的3D打印机的技术原理。</p>
+<p>3DP</p>
+<p>3DP即3D printing。采用3DP技术的3D打印机使用标准喷墨打印技术，通过将液态连结体铺放在粉末薄层上，以打印横截面数据的方式逐层创建各部件，创建三维实体模型。简单来说就是用粘结剂把把材料粉末铺开，通过喷头用粘接剂把粉末粘起来，逐层创建你想要的模样，就好像是通过喷头用粘接剂将零件的截面“印刷”在材料粉末上面一样。粉末的材料有多种，如石膏、陶瓷、塑料、金属等等。由于打印的过程中可以使用不同颜色的材料，所以打印的样品模型与实际产品可以有同样的色彩，是比较成熟的彩色3D打印技术。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1ftal0d1curj30go067gly.jpg" alt=""></p>
+<p>SLS</p>
+<p>SLS即Selective Laser Sintering，选区激光烧结技术。预先在工作台上铺上粉末材料，将材料预热到接近熔化点，然后让激光在计算机控制下按照需要成型模型的截面形状进行扫描，使粉末融化，被烧结部分粘合到一起。然后不断循环，层层堆积成型。最终去掉未烧结部分的粉末，形成打印后的模型。这种技术和3DP技术相似，只不过SLS所使用的材料比较特殊，成本比较高，成型条件也比较复杂。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1ftal0cvm6tj30cd06m3yq.jpg" alt=""></p>
+<p>SLA</p>
+<p>SLA 是”Stereo lithography Appearance”的缩写，即立体光固化成型法。 SLA是最早实用化的3D打印技术，以光敏树脂为原料，通过计算机控制激光按零件的各分层截面信息在液态的光敏树脂表面进行逐点扫描，被扫描区域的树脂薄层产生光聚合反应而固化，形成零件的一个薄层。一层固化完成后，工作台下移一个层厚的距离，然后在原先固化好的树脂表面再敷上一层新的液态树脂，直至得到三维实体模型。使用这种技术打印的模型精度较高，且模型表面也可以做到比较光滑（相对于其他3D打印技术而言）。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1ftal0clg10j30go07yjrs.jpg" alt=""></p>
+<p>使用SLA技术打印的模型表面比较光滑</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1ftal0bsozdj306o04izkb.jpg" alt=""></p>
+<p>最后闪亮登场的就是FDM技术</p>
+<p>FDM 即是 Fused Deposition Modeling，熔融层积成型。将丝状的热熔性材料加热融化，同时三维喷头在计算机的精确控制下，根据截面轮廓信息，将材料选择性地涂敷在工作台上，待材料快速冷却后形成一层截面。一层成型完成后，机器工作台下降一个高度再成型下一层，直至形成整个实体造型。</p>
+<p>正在工作中的3D打印机</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1ftal0c9vmvj306o050t90.jpg" alt=""></p>
+<p>这种原理非常简单，就好像蛋糕师在做奶油蛋糕时，从容器中挤出奶油做出各种形状的造型一样。因此，市面上出现了各种3D打印笔，与3D打印机不同的是，控制喷头的不是精确的计算机，而是人的手而已。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1ftal0c5ay9j306o04n0sr.jpg" alt=""></p>
+<p>FDM 技术使用的材料种类多，但一般是热塑性材料，如ABS、PC、尼龙等，以丝状供料，材料在喷头内被加热熔化，再不断被挤出。这种工艺不用激光，使用、维护简单，成本较低，但材料表面会有一层层堆积的痕迹，不够光滑，精度较差的FDM打印机中更为明显。近年来又开发出PC，PC/ABS，PPSF等更高强度的成形材料，使得该工艺有可能直接制造功能性零件。由于这种工艺具有一些显著优点，因此发展极为迅速，目前FDM系统在全球已安装的快速成形系统中的份额最大。</p>
+<p>下面是几个用FDM技术打印的3D模型，仔细看会发现表面有细小的条纹。</p>
+<p>大白</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1ftal0c0qzyj305006oq2v.jpg" alt=""></p>
+<p>南瓜灯，材料没有选好，变成一副白骨了</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1ftal0bx4shj306o050mx3.jpg" alt=""></p>
+<p>FDM 类型的 3D 打印机无论是材料还是机器，都可以做到非常廉价。廉价到什么程度呢？花1000元左右，就可以购置一套设备，而打印材料，一公斤也就一百元左右而已。非常适合对3D打印感兴趣的人作为入门机使用。点击此处链接 <a href="https://item.taobao.com/item.htm?spm=a230r.1.14.16.XoDPlJ&amp;id=533749843462" target="_blank" rel="noopener">https://item.taobao.com/item.htm?spm=a230r.1.14.16.XoDPlJ&amp;id=533749843462</a> 就可以找到一款3D打印入门机，当然了，对于打印精度和稳定性，不要有太高的要求。</p>
 
         </div>
         <div class="post-tool">
@@ -305,7 +233,7 @@ body {
         
         <div class="post-tags">标签：
             
-            <a href="/tags/CSS/">CSS</a>
+            <a href="/tags/CoolTech/">黑科技</a>
             
         </div>
         
@@ -321,8 +249,8 @@ body {
      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
      */
     var disqus_config = function () {
-        this.page.url = 'http://zhmhhu.github.io/big-front-end/2018-01-24-css-position-and-float.html';
-        this.page.identifier = 'big-front-end/2018-01-24-css-position-and-float.html';
+        this.page.url = 'http://zhmhhu.github.io/technology/2016-11-15-brief-introduction-of-3D-printing-technology.html';
+        this.page.identifier = 'technology/2016-11-15-brief-introduction-of-3D-printing-technology.html';
     };
     (function () { // DON'T EDIT BELOW THIS LINE
         var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');

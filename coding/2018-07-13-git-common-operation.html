@@ -49,7 +49,7 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>大坝是如何建起来的 - 赵小生的博客</title>
+<title>git 常用操作 - 赵小生的博客</title>
 
 <meta name="keywords" content="">
 
@@ -88,7 +88,7 @@
         
         <h1 class="cover-siteName">赵小生的博客</h1>
         <h3 class="cover-siteTitle">传播科技，关注人文</h3>
-        <p class="cover-siteDesc">一个关注技术与人文的博客</p>
+        <p class="cover-siteDesc">写更少的代码，过更好的生活</p>
         <div class="cover-sns">
             
             <div class="btn btn-weibo">
@@ -118,11 +118,11 @@
         
             
                 <li class="">
-                    <a href="/categories/big-front-end" data-name="前端">前端</a>
+                    <a href="/categories/coding" data-name="代码">代码</a>
                 </li>
             
                 <li class="">
-                    <a href="/categories/server-side" data-name="后台">后台</a>
+                    <a href="/categories/technology" data-name="科技">科技</a>
                 </li>
             
                 <li class="">
@@ -185,27 +185,49 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
-                    <span title="最后编辑于2018-07-08">2018-07-08</span>
+                    <span title="最后编辑于2018-07-13">2018-07-13</span>
                 </p>
-                <p>在科技和人文的世界里翱翔</p>
+                <p>不会讲故事的程序员不是好的水利工程师</p>
             </div>
-            <h2 class="post-title">大坝是如何建起来的</h2>
+            <h2 class="post-title">git 常用操作</h2>
             <div class="post-meta">
-                本文总共541个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共1397个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>在江河上建大坝需要经过以下几个步骤</p>
+            <p>这里列出几个我经常使用的，但又不怎么容易记住的 git 操作。</p>
+<h2 id="1-撤销已提交的-commits"><a href="#1-撤销已提交的-commits" class="headerlink" title="1.撤销已提交的 commits"></a>1.撤销已提交的 commits</h2><p>已经提交的commits，但是又不想用了，应该如何撤销。</p>
+<p>打开GIT SHELL，切换到Git工作目录下，使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD~N</span><br></pre></td></tr></table></figure>
+<p>N 是你想回滚到第几个 Commit 之前。</p>
+<h2 id="2-删除的远程仓库，如何重新连接？"><a href="#2-删除的远程仓库，如何重新连接？" class="headerlink" title="2.删除的远程仓库，如何重新连接？"></a>2.删除的远程仓库，如何重新连接？</h2><p>不小心删除了远程仓库的连接，用 git remote 查询之后结果为空，如何重新建立起连接？使用如下命令即可恢复。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/username/YourRepository.git</span><br></pre></td></tr></table></figure>
+<p>中间的地址可以换成自己的代码仓库地址。<br>注意，此时本地仓库并没有追踪远程分支，使用 <code>git fetch origin</code> 命令重新追踪远程分支。<br>再使用 <code>git branch</code> 命令就可以查看到所有本地和远程的分支了。</p>
+<h2 id="3-如何保持-github-上-fork-的项目与原项目同步"><a href="#3-如何保持-github-上-fork-的项目与原项目同步" class="headerlink" title="3.如何保持 github 上 fork 的项目与原项目同步"></a>3.如何保持 github 上 fork 的项目与原项目同步</h2><p>在网上搜索如何同步fork项目和原项目，很多热心的网友的各种解决方案。</p>
 <ol>
-<li>修建导流渠或导流洞，把河流中的水通过另外的方式引导到下游，以实现第2步</li>
-<li>截流，修建临时设施截断河流，以便实现第3步。这个临时设施叫做围堰。有可能上下游都需要修建围堰，也有可能只需要上游修建围堰。如果河道落差不大，下游河水可能会上涨到影响坝体施工，就需要修筑下游围堰，否则只需要修筑上游围堰。</li>
-<li>处理大坝地基，这个比较关键，决定着日后大坝会不会渗水。为了防止渗水，大坝地基当中往往会灌注很多水泥浆，连成一片形成一道帷幕，水泥浆的深度有时会达到上百米。</li>
-<li>筑坝。修建混凝土坝需要浇筑混凝土，期间需要特别注意温度控制，以防止大块的混凝土因受热不均和而变形开裂。修筑土石坝应特别注意夯实土石料，并且在坝体中应填筑阻水材料，大多数土石坝使用黏土作为防水材料，填筑在坝体中部，形成防水心墙。</li>
-<li>筑坝完成后将封闭导流设施，蓄水，水库正常运行。有的大坝会把导流设置改造成泄水设施，以便在水库水位过高时下泄多余的水。</li>
+<li><p>删除原有项目，在重新fork。(无疑这是暴力有效的，但绝不是我们想要的方式)</p>
+</li>
+<li><p>在电脑本地同时 git clone 原项目和 fork 项目，用 git pull 更新，然后对比，再 git push 到 github上个人代码库。(虽有繁琐，却也是办法)</p>
+</li>
+<li><p>本地 git clone 已 fork 的项目，然后添加远程库为原项目地址。(当然这里肯定要有项目访问权限的哦)</p>
+</li>
 </ol>
-<p>1-3步示意图，由<a href="https://www.zhihu.com/people/yang-zhe-18/" target="_blank" rel="noopener">杨哲</a>手工绘制。<br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1ft2pcs26hdj30mr0csgm5.jpg" alt=""></p>
-<p>截留施工照片<br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1ft2pdq3yf4j30dw09xab1.jpg" alt=""></p>
-<p>截流一般选择在枯水期，比如12月份左右。围堰是临时建筑，如果是混凝土围堰，即使漫过也问题不大。广泛使用的土石围堰则禁止漫顶过流。因为施工期不会拦蓄河水，即使围堰溃坝，流量较小，对下游影响不大。</p>
+<p>最后一种方法使用起来最为便捷，下面详细讲解该操作。</p>
+<p>第一步：通过 github 的 web 页面 fork 目标项目,然后使用 git clone 命令在本地克隆自己 fork 的项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/YOUR-USERNAME/project—name</span><br></pre></td></tr></table></figure>
+<p>切换到此项目的路径下，使用如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>可以看到当前项目的远程仓库配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">github  https://github.com/YOUR-USERNAME/project—name.git (fetch)</span><br><span class="line">github  https://github.com/YOUR-USERNAME/project—name.git (push)</span><br></pre></td></tr></table></figure>
+<p>第二步：复制被自己 fork 的原项目的 git 地址使用下面的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add upstream 原始项目仓库的git地址</span><br></pre></td></tr></table></figure>
+<p>如果继续使用 <code>git remove -v</code>命令查看的话，就会发现这个时候该项目已经和原始的被fork的项目产生了关联。</p>
+<p>第三步：保持fork之后的项目与原项目同步，使用如下的命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch upstream</span><br></pre></td></tr></table></figure>
+<p>之后，把原项目和并到自己 folk 之后的项目，比如合并到自己项目的 master 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge upstream/master</span><br></pre></td></tr></table></figure></p>
+<p>如有冲突，需手动修改有冲突的代码。此时已经完成了 fork 项目与原项目同步，如果需要把项目代码推送到自己的远程仓库，就继续进行第四步。</p>
+<p>第四步：push 本地项目代码到远程仓库，<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure></p>
+<p>推送本地仓库的 master 分支到远程仓库（默认是与本地分支同名的远程分支)</p>
 
         </div>
         <div class="post-tool">
@@ -216,7 +238,7 @@
         
         <div class="post-tags">标签：
             
-            <a href="/tags/water-conservation/">水利</a>
+            <a href="/tags/git/">git</a>
             
         </div>
         
@@ -232,8 +254,8 @@
      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
      */
     var disqus_config = function () {
-        this.page.url = 'http://zhmhhu.github.io/talk/2018-07-08-how-to-build-dams.html';
-        this.page.identifier = 'talk/2018-07-08-how-to-build-dams.html';
+        this.page.url = 'http://zhmhhu.github.io/coding/2018-07-13-git-common-operation.html';
+        this.page.identifier = 'coding/2018-07-13-git-common-operation.html';
     };
     (function () { // DON'T EDIT BELOW THIS LINE
         var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');

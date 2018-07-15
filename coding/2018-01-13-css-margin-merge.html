@@ -49,11 +49,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>java语言中除数为零问题 - 赵小生的博客</title>
+<title>css外边距合并的几种情况 - 赵小生的博客</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="java 语言中除数为零的问题，会因为数据类型的不同而产生几种结果。">
+<meta name="description " content="外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。">
 </head>
 <body>
 <div id="nav">
@@ -88,7 +88,7 @@
         
         <h1 class="cover-siteName">赵小生的博客</h1>
         <h3 class="cover-siteTitle">传播科技，关注人文</h3>
-        <p class="cover-siteDesc">一个关注技术与人文的博客</p>
+        <p class="cover-siteDesc">写更少的代码，过更好的生活</p>
         <div class="cover-sns">
             
             <div class="btn btn-weibo">
@@ -118,11 +118,11 @@
         
             
                 <li class="">
-                    <a href="/categories/big-front-end" data-name="前端">前端</a>
+                    <a href="/categories/coding" data-name="代码">代码</a>
                 </li>
             
                 <li class="">
-                    <a href="/categories/server-side" data-name="后台">后台</a>
+                    <a href="/categories/technology" data-name="科技">科技</a>
                 </li>
             
                 <li class="">
@@ -185,34 +185,72 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
-                    <span title="最后编辑于2016-01-13">2016-01-13</span>
+                    <span title="最后编辑于2018-01-13">2018-01-13</span>
                 </p>
-                <p>在科技和人文的世界里翱翔</p>
+                <p>不会讲故事的程序员不是好的水利工程师</p>
             </div>
-            <h2 class="post-title">java语言中除数为零问题</h2>
+            <h2 class="post-title">CSS外边距合并的几种情况</h2>
             <div class="post-meta">
-                本文总共910个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共1960个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>java 语言中的除数为零，会因为数据类型的不同而产生几种不同的结果</p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>在以下几个例子中，输出结果如何？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">float aa=0;</span><br><span class="line">System.out.println(aa/0);</span><br><span class="line">System.out.println(1/aa);</span><br><span class="line">System.out.println(aa/aa);</span><br><span class="line">System.out.println(1/0);</span><br></pre></td></tr></table></figure>
-<p>答案是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NaN</span><br><span class="line">Infinity</span><br><span class="line">NaN</span><br><span class="line">抛出异常java.lang.ArithmeticException: / by zero</span><br></pre></td></tr></table></figure>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>从中我们可以看出有以下几种情况</p>
-<ul>
-<li>一个为零的浮点类型的数据在做除数时，如果被除数是整型，则结果为Infinity,也就是一个无穷数；</li>
-<li>如果被除数是为零的浮点类型，则无论除数是整型还是浮点类型的零，结果都是NaN。</li>
-<li>当一个整数除以整数类型的零时，则会抛出异常</li>
-</ul>
-<p>float 类型的 0 在除法中不会用准确的0而是非常接近0的小数来表示。</p>
-<p>NaN，意思是not an number，即”不是数字”。Java虚拟机在处理浮点数运算时，不会抛出任何运行时异常，当一个操作产生溢出时，将会使用有符号的无穷大(Infinity)来表示，如果某个操作结果没有明确的数学定义的话，将会使用 NaN 值来表示，所有使用 NaN 值作为操作数的算术操作，结果都返回NaN。Java 中的 Double 和 Float 中都有isNaN函数，判断一个数是不是NaN，其实现都是通过 v != v 的方式，因为 NaN 是唯一与自己不相等的值，NaN 与任何值都不相等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Double.NaN != Double.NaN   //true</span><br></pre></td></tr></table></figure>
-<p>可以用Double.isNaN(double x)的方法来判断结果是不是NaN。</p>
-<p>可以用Double.isInfinite(double x)的方法来判断结果是不是Infinity。</p>
-<p>因此根据上面的结果，有以下判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(Double.isNaN(aa/0));</span><br><span class="line">System.out.println(Double.isInfinite(1/aa));</span><br></pre></td></tr></table></figure></p>
-<p>结果都显示true。   </p>
+            <p>外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。</p>
+<p>外边距在<a href="https://www.w3.org/TR/CSS1/#vertical-formatting" target="_blank" rel="noopener">CSS1</a>中就有</p>
+<blockquote>
+<p>The width of the margin on non-floating block-level elements specifies the minimum distance to the edges of surrounding boxes. Two or more adjoining vertical margins (i.e., with no border, padding or content between them) are collapsed to use the maximum of the margin values. In most cases, after collapsing the vertical margins the result is visually more pleasing and closer to what the designer expects.</p>
+</blockquote>
+<p>意思是说，非浮动块级元素的外边距宽度指定了其到环绕元素的边缘的最小距离。两个或更多的垂直外边距（比如，没有边框，内边距或内容在它们之间）就会发生合并，其值为它们中的最大者。在大多数情况下，在垂直方向发生外边距合并的结果，是设计师所喜闻乐见的。</p>
+<p>按照这一设计思想，CSS外边距合并会在以下几种情况发生。</p>
+<h2 id="1-上下元素挨在一起"><a href="#1-上下元素挨在一起" class="headerlink" title="1 上下元素挨在一起"></a>1 上下元素挨在一起</h2><p>当一个元素位于另一个元素上面时，第一个元素的下外边距与第二个元素的上外边距会发生合并。合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。</p>
+<pre><code>&lt;!-- sytle.css --&gt;
+.div1{
+margin:10px; 
+border:1px solid gray;
+}
+.div2{
+margin:20px; 
+border:1px solid gray;
+}
+
+&lt;div class=&apos;div1&apos;&gt;内容1&lt;/div&gt;
+&lt;div class=&apos;div2&apos;&gt;内容2&lt;/div&gt;
+</code></pre><p>结果是div1和div2的间距是20px。</p>
+<h2 id="2-子元素包含在父元素之中"><a href="#2-子元素包含在父元素之中" class="headerlink" title="2 子元素包含在父元素之中"></a>2 子元素包含在父元素之中</h2><p>当一个元素包含在另一个元素中时（假设没有内边距或边框把外边距分隔开），它们的上和/或下外边距也会发生合并。如果父元素有内边距或边框，则子元素的外边距以父元素的内边距或边框为准，不会发生外边距合并。</p>
+<pre><code>&lt;!-- sytle.css --&gt;
+.div1{
+margin:10px; 
+
+}
+.div2{
+margin:30px; 
+    border:1px solid gray;
+}
+
+&lt;div class=&apos;div1&apos;&gt;
+    &lt;div class=&apos;div2&apos;&gt;内容2&lt;/div&gt;
+    内容1
+&lt;/div&gt;
+</code></pre><p>显示结果为：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fsuef2ol9pj30ah03u744.jpg" alt=""></p>
+<p>父元素div1和子元素div2的上外边距之间没有边框或内边距阻隔，导致两者的上外边距合并，从而导致父元素div1至其上部元素的距离变为30px（两者合并取大值）。如果父元素有上边框或上外边距，则不会发生外边距合并。</p>
+<h2 id="3-空元素的外边距合并"><a href="#3-空元素的外边距合并" class="headerlink" title="3 空元素的外边距合并"></a>3 空元素的外边距合并</h2><p>假设有一个空元素，它有外边距，但是没有边框或填充。在这种情况下，上外边距与下外边距就碰到了一起，它们会发生合并。</p>
+<pre><code>&lt;!-- sytle.css --&gt;
+.div1{
+margin:10px; 
+
+}
+.div2{
+margin:10px; 
+border:1px solid gray;
+}
+
+&lt;div class=&apos;div1&apos;&gt;内容1&lt;/div&gt;
+&lt;div class=&apos;div2&apos;&gt;&lt;/div&gt;
+&lt;div class=&apos;div1&apos;&gt;内容1&lt;/div&gt;
+</code></pre><p>显示为：<br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fsuef3oxawj30e702et8i.jpg" alt=""></p>
+<p>元素div2的上下边距合并，边框变成了一条直线</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>只有普通文档流中块元素的垂直外边距才会发生外边距合并。行内元素、浮动元素或绝对定位之间的外边距不会合并。因为CSS 的 外边距合并 设计之初就是为实现文本排版的段落间距而提供的特性。理解了这一设计意图，也就能理解哪些情况会发生外边距合并以及如何利用这一特性。但是明白它的用途就可以知道它是非常有用的、不可能被舍弃的特性。实际上这个特性还会进化，CSS3支持竖排文本，对于竖排文本来说，collapse应该发生在水平方向而不是垂直方向。</p>
 
         </div>
         <div class="post-tool">
@@ -223,7 +261,7 @@
         
         <div class="post-tags">标签：
             
-            <a href="/tags/java/">java</a>
+            <a href="/tags/CSS/">CSS</a>
             
         </div>
         
@@ -239,8 +277,8 @@
      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
      */
     var disqus_config = function () {
-        this.page.url = 'http://zhmhhu.github.io/server-side/2016-01-13-java-divisor-is-zero.html';
-        this.page.identifier = 'server-side/2016-01-13-java-divisor-is-zero.html';
+        this.page.url = 'http://zhmhhu.github.io/coding/2018-01-13-css-margin-merge.html';
+        this.page.identifier = 'coding/2018-01-13-css-margin-merge.html';
     };
     (function () { // DON'T EDIT BELOW THIS LINE
         var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');

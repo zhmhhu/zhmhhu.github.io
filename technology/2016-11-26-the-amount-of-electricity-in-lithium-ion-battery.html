@@ -49,11 +49,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>java语言中object转为string的几种形式 - 赵小生的博客</title>
+<title>锂离子电池中的电量是如何表示的 - 赵小生的博客</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="在java项目的实际开发和应用中，常常需要用到将对象转为String这一基本功能。本文将对常用的转换方法进行一个总结。常用的方法有Object.toString()，(String)要转换的对象，String.valueOf(Object)等。下面对这些方法一一进行分析。">
+<meta name="description " content="拿到一块锂离子电池或移动电源之后，我们首先能看到的是信息是容量是多少 mAh，输入输出电压是多少。比如下面这块移动电源的参数，电池容量10000mAh，输入5V,1A，输出5V,1A等等。">
 </head>
 <body>
 <div id="nav">
@@ -88,7 +88,7 @@
         
         <h1 class="cover-siteName">赵小生的博客</h1>
         <h3 class="cover-siteTitle">传播科技，关注人文</h3>
-        <p class="cover-siteDesc">一个关注技术与人文的博客</p>
+        <p class="cover-siteDesc">写更少的代码，过更好的生活</p>
         <div class="cover-sns">
             
             <div class="btn btn-weibo">
@@ -118,11 +118,11 @@
         
             
                 <li class="">
-                    <a href="/categories/big-front-end" data-name="前端">前端</a>
+                    <a href="/categories/coding" data-name="代码">代码</a>
                 </li>
             
                 <li class="">
-                    <a href="/categories/server-side" data-name="后台">后台</a>
+                    <a href="/categories/technology" data-name="科技">科技</a>
                 </li>
             
                 <li class="">
@@ -185,35 +185,50 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
-                    <span title="最后编辑于2016-01-13">2016-01-13</span>
+                    <span title="最后编辑于2016-11-26">2016-11-26</span>
                 </p>
-                <p>在科技和人文的世界里翱翔</p>
+                <p>不会讲故事的程序员不是好的水利工程师</p>
             </div>
-            <h2 class="post-title">java语言中Object转为String的几种形式</h2>
+            <h2 class="post-title">锂离子电池中的电量是如何表示的</h2>
             <div class="post-meta">
-                本文总共1766个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共1716个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>在java项目的实际开发和应用中，常常需要用到将对象转为String这一基本功能。本文将对常用的转换方法进行一个总结。常用的方法有Object.toString()，(String)要转换的对象，String.valueOf(Object)等。下面对这些方法一一进行分析。</p>
-<h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>采用 Object.toString()方法</p>
-<p>请看下面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object object = getObject();</span><br><span class="line">System.out.println(object.toString());</span><br></pre></td></tr></table></figure>
-<p>在这种使用方法中，因为java.lang.Object类里已有public方法.toString()，所以对任何严格意义上的java对象都可以调用此方法。但在使用时要注意，必须保证object不是null值，否则将抛出NullPointerException异常。采用这种方法时，通常派生类会覆盖Object里的toString()方法。</p>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>采用类型转换(String)object方法</p>
-<p>这是标准的类型转换，将object转成String类型的值。</p>
-<p>使用这种方法时，需要注意的是类型必须能转成String类型。因此最好用instanceof做个类型检查，以判断是否可以转换。否则容易抛出CalssCastException异常。此外，需特别小心的是因定义为Object 类型的对象在转成String时语法检查并不会报错，这将可能导致潜在的错误存在。这时要格外小心。如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object obj = new Integer(100);</span><br><span class="line">String　strVal = (String)obj;</span><br></pre></td></tr></table></figure>
-<p>在运行时将会出错，因为将Integer类型强制转换为String类型，无法通过。但是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer obj = new Integer(100);</span><br><span class="line">String　strVal = (String)obj;</span><br></pre></td></tr></table></figure>
-<p>如此格式代码，将会报语法错误。<br>此外，因null值可以强制转换为任何java类类型，(String)null也是合法的。</p>
-<h2 id="方法3"><a href="#方法3" class="headerlink" title="方法3"></a>方法3</h2><p>采用String.valueOf(Object)</p>
-<p>String.valueOf(Object)的基础是Object.toString()。但它与Object.toString()又有所不同。在前面方法1的分析中提到，使用第一种时需保证不为null。但采用第三种方法时，将不用担心object是否为null值这一问题。为了便于说明问题，我们来分析一下相关的源代码。Jdk里String.valueOf(Object)源码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">　　/**</span><br><span class="line">　　 * Returns the string representation of the Object argument.</span><br><span class="line">　　 *</span><br><span class="line">　　 * @param　 obj　 an Object.</span><br><span class="line">　　 * @return　if the argument is null, then a string equal to</span><br><span class="line">　　 *　　　　　&quot;null&quot;; otherwise, the value of</span><br><span class="line">　　 *　　　　　obj.toString() is returned.</span><br><span class="line">　　 * @see　　 java.lang.Object.toString()</span><br><span class="line">　　 */</span><br><span class="line"></span><br><span class="line">　　public static String valueOf(Object obj) &#123;</span><br><span class="line"></span><br><span class="line">　　　 return (obj == null) ? &quot;null&quot; : obj.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从上面的源码可以很清晰的看出null值不用担心的理由。但是，这也恰恰给了我们隐患。我们应当注意到，当object为null时，String.valueOf(object)的值是字符串”null”，而不是null!在使用过程中切记要注意。试想一下，如果我们用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object object = null;</span><br><span class="line">System.out.println(String.valueOf(object)==null);</span><br></pre></td></tr></table></figure>
-<p>将会输出false.</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总之，第三种方法使用比较方便，但是需要注意null类型的数据转换之后变成了字符串“null”，而不是空格“”。</p>
+            <p>拿到一块锂离子电池或移动电源之后，我们首先能看到的是信息是容量是多少 mAh，输入输出电压是多少。比如下面这块移动电源的参数，电池容量 10000 mAh，输入5V-1A，输出5V-1A等等。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1ftaldjcwhlj30b8091t9y.jpg" alt=""></p>
+<p>mAh 是代表什么含义呢？我怎么知道这块电池有多少能量，以及把它充满需要多长时间呢？其实，这些问题，只要明白了其中的原理，都能够从这些标明的数字中计算出来。</p>
+<h2 id="mAh表示电池所带电荷量"><a href="#mAh表示电池所带电荷量" class="headerlink" title="mAh表示电池所带电荷量"></a>mAh表示电池所带电荷量</h2><p>mAh 称作毫安时，在物理学中，它是衡量物体携带电荷量多少的物理量。电荷量以 Q 表示。它的标准单位是库伦，以 C 表示。</p>
+<p>毫安时如何能评价物理带电量呢？我们知道电流表示单位时间内通过导体横截面的电量大小，即</p>
+<pre><code>I=Q/t。 可见Q=I*t，
+</code></pre><p>也就是说电量Q等于电流强度I与用电时间t的乘积，这时I的单位是“安培A”，时间的单位是“秒s”,电量的单位是“库伦C”。</p>
+<pre><code>1A*1s=1C，1mAh=3.6C，1Ah=1000mAh=3600C。
+</code></pre><p>如果把电比作水，那么mAh只能表示这个池子里面有多少水，并不能表示这一池子的水有多少能量。假设1mA对应一个流量，那么这池水在1万个流量的状态下可以持续1个小时。</p>
+<p>毫安时可以表示电池带电量的多少，但是并不能表示能量的多少。要表示能量，还缺一个物理量，那就是电压。</p>
+<p>我们知道，电功率等于导体两端电压与通过导体电流的乘积，即P=U·I。同时，电器的耗电量可以通过功率乘以时间来计算，即W=P·t。那么，电器的耗电量用电流电压来表示就是</p>
+<pre><code>W=P·t=U·I·t
+</code></pre><p>对于蓄电池来说，它所蕴含的能量 W=U·I·t=U·Q，也就是说，把电池的放电电压与电量相乘，就是这块电池的能量。以一块普通的移动电源为例，容量10000mAh，放电电压5V，全部释放出来的能量是</p>
+<pre><code>W=U·Q=5V×10000mAh=5V×10A×3600s=180000J
+</code></pre><p>也就是说，这块电池完全放电能放出180000 焦耳的电能。</p>
+<p>同样以水打比方，一池水所蕴含的能力，除了与水的多少有关，还与它说在的高度有关，高度越高，能量越大。这里的高度，相当于电压。</p>
+<h2 id="能量的另一个单位Wh"><a href="#能量的另一个单位Wh" class="headerlink" title="能量的另一个单位Wh"></a>能量的另一个单位Wh</h2><p>在乘坐飞机的时候，我们会被告知</p>
+<blockquote>
+<p>携带的移动电源额定能量不超过100Wh，如果额定能量超过100Wh但不超过160Wh的，便要经航空公司批准后才能携带。额定能量超过160Wh的移动电源，被明确严禁携带.</p>
+</blockquote>
+<p>这里的Wh是什么单位呢，它又如何能表示能量呢？</p>
+<p>Wh读作瓦时，它并不是一个标准单位，而是两个物理量的乘积，瓦是功率，时是时间单位，表示一小时。</p>
+<pre><code>1Wh=1W×3600s=3600J。
+</code></pre><p>然而，知道电池有多少焦耳的能量并没有什么卵用。我们想知道的是，如何把标定移动电池电量的mAh转换成机场规定的Wh，以便于判断我的移动电源是否超标了。</p>
+<p>还以刚刚那块移动电源为例，由于1W=1V<em>1A，如果时间都取一小时，那么1Wh=1V</em>1A*1h。如果额定电压是5V，那么10000mAh容量的电池所具有的能量就是50Wh。100Wh的移动电源如果放电压是5V，它的容量就可以用100Wh除以5V等一20Ah，也就是20000mAh。</p>
+<h2 id="电池的充电时间该如何计算"><a href="#电池的充电时间该如何计算" class="headerlink" title="电池的充电时间该如何计算"></a>电池的充电时间该如何计算</h2><p>电池的充电时间与充电器的功率有关。拿到一个充电器之后，我们可以它的充电指标比如</p>
+<pre><code>输出电压5V，电流1A
+</code></pre><p>计算一下功率是5W。理论上，50Wh（即容量10000mAh）的电池需要充电10小时。实际工作是可能会有损耗，比如电池的发热以及充电器本身的发热，时间要稍长一些。</p>
+<p>手机电池3000mAh（如果放电电压3.7V，能量是11.1Wh），使用上述充电器充电需要大约11.1Wh/5W，约为2.22小时。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>mAh是电量的单位，其标准单位是库伦（C）,1mAh=3.6C。</p>
+<p>Wh是能量单位，其标准单位是焦耳（J）,1Wh=3600J。</p>
+<p>mAh和Wh之间的换算需要指定电压（U），1Wh=1000mAh*1V。</p>
+<p>如果要计算移动电源有多少瓦时，就用它的电池容量（mAh）除以一千再乘以电压(V)。</p>
+<p>计算充电需多长时间，就用它的额定能量（Wh）除以充电器的功率（输出电压V乘以电流A），得出充电需要多少小时，当然，计算出来的值是理论值。</p>
 
         </div>
         <div class="post-tool">
@@ -224,7 +239,7 @@
         
         <div class="post-tags">标签：
             
-            <a href="/tags/java/">java</a>
+            <a href="/tags/CoolTech/">黑科技</a>
             
         </div>
         
@@ -240,8 +255,8 @@
      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
      */
     var disqus_config = function () {
-        this.page.url = 'http://zhmhhu.github.io/server-side/2016-01-13-java-object-string.html';
-        this.page.identifier = 'server-side/2016-01-13-java-object-string.html';
+        this.page.url = 'http://zhmhhu.github.io/technology/2016-11-26-the-amount-of-electricity-in-lithium-ion-battery.html';
+        this.page.identifier = 'technology/2016-11-26-the-amount-of-electricity-in-lithium-ion-battery.html';
     };
     (function () { // DON'T EDIT BELOW THIS LINE
         var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');
