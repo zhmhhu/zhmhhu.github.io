@@ -193,7 +193,7 @@
             </div>
             <h2 class="post-title">你所不知道的unicode字符编码</h2>
             <div class="post-meta">
-                本文总共4040个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共5026个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
@@ -208,7 +208,8 @@
 <p>GBK 采用双字节表示，总体编码范围为 0x8140-0xFEFE（1000000101000000-1111111011111110），首字节在 0x81-0xFE 之间，尾字节在 0x40-0xFE之间。可以看出首字节最高位都为1，这样一来，如果尾字节后的字节最高位为0，那么就可以解析为一个ASCII编码字符，否则就是一个连续的二字节字符。</p>
 <h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>世界上存在着多种语言，有没有一种编码方式能够囊括所有语言中的字符呢？答案是有。Unicode编码正是为了满足这种需求制定的，它规定了每一个字符所对应的唯一的二进制代码，称之为码点（code point）。Unicode是一个很大的集合，目前的规模可以容纳100多万个符号。</p>
 <p>这么多符号，Unicode不是一次性定义的，而是分区定义。每个区可以存放 65536个（ 2<sup>16</sup> ）字符，称为一个平面（plane）。目前，一共有17个平面。</p>
-<p>最前面的65536个字符位，称为基本平面（缩写BMP），它的码点范围是从0一直到216-1，写成16进制就是从U+0000到U+FFFF。所有最常见的字符都放在这个平面，这是Unicode最先定义和公布的一个平面。<br>剩下的字符都放在辅助平面（缩写SMP），码点范围从U+010000一直到U+10FFFF。 </p>
+<p>最前面的65536个字符位，称为基本平面（缩写BMP），它的码点范围是从0一直到216-1，写成16进制就是从U+0000到U+FFFF。所有最常见的字符都放在这个平面，这是Unicode最先定义和公布的一个平面。</p>
+<p>剩下的字符都放在辅助平面（缩写SMP），码点范围从U+010000一直到U+10FFFF。 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Plane 0 0000–FFFF 基础多语言平面（Basic Multilingual Plane）</span><br><span class="line">Plane 1 0000–1FFFF 辅助多语言平面 (Supplementary Multilingual Plane)</span><br><span class="line">Plane 2 0000–1FFFF 辅助表意文字平面 (Supplementary Ideographic Plane)</span><br><span class="line">Plane 3-13 30000–DFFFF 未分配(unassigned)</span><br><span class="line">Plane 14  E0000–EFFFF 辅助多用途平面(Supplement­ary Special-purpose Plane)</span><br><span class="line">Plane 15-16 F0000–10FFFF 辅助私有用户区平面 (Supplement­ary Private Use Areaplanes)</span><br></pre></td></tr></table></figure>
 <p>每个符号的编码都不一样，这么多的字符，想要以二进制形式表示，就需要比较多的字节才能够一一对应。标准的 Unicode(也就是第一个平面，BMP)采用4个字节表示一个字符串。比如，U+0639 表示阿拉伯字母 Ain，U+0041 表示英语的大写字母 A，U+4E6D 表示汉字”乭 “。显然，Unicode 和 GBK 是不兼容的。访问 unicode.org 可以查询具体的符号对应表。</p>
 <p>对于 Unicode 存在一些误解，<strong>它仅仅只是一个字符集，规定了符号对应的二进制代码，至于这个二进制代码如何存储则没有任何规定</strong>。它的想法很简单，就是为每个字符规定一个用来表示该字符的数字，仅此而已。而 UTF-8 是 Unicode 的一种实现方式，它规定了使用 Unicode 编码的字符如何存储和传输。</p>
@@ -248,7 +249,23 @@
 <p>这样的编码方式很好理解，如果一个字节当中第一位是 0，那么这个字节就对应着一个字符，如果第一位是 1，那么看他后面连续有多少个 1，就表示这个字符占用了多少个字节。</p>
 <p>例如，“我”的Unicode码点是0x6211，二进制 110001000010001，落在第三行的范围内（0000 0800~0000 FFFF），因此”我”需要三个字节，格式是”1110xxxx 10xxxxxx 10xxxxxx”。然后，从”我”的最后一个二进制位开始，依次从后向前填入格式中的x，多出的位补0。这样就得到了”我”的UTF-8编码是”11100110 10001000 10010001 “，转换成十六进制就是E68891，这才是最终存储在计算机中的二进制编码。</p>
 <p>这里指出一个误区，网络上有很多在线 UTF-8 编码转换工具，声称可以把汉字转换成 UTF-8 编码，其实大多数工具只是把汉字转换成了与之对应的 Unicode 码点，并不是真正在存储和传输过程中的 UTF-8 编码。<a href="http://www.mytju.com/classcode/tools/encode_utf8.asp" target="_blank" rel="noopener">这里</a>可以查询汉字对应的 UTF-8 编码和 Unicode 编码，可以看出这两者是不同的。</p>
-<p>除了UTF-8之外，Unicode的实现方式还有UTF-16 ，UTF-32 。 UTF-16 使用2~4个字节表示一个字符，UTF-32 则使用标准的4个字节表示一个字符，与其Unicode码点一一对应。无论采用哪种表现形式，同一字符所对应的 Unicode 码点都是一样的，只不过在存储和传输的时候，把码点做了不同的转换。</p>
+<p>除了 UTF-8 之外，Unicode 的实现方式还有 UTF-16 ，UTF-32 。 UTF-16 使用2~4个字节表示一个字符，UTF-32 则使用标准的4个字节表示一个字符，与其Unicode码点一一对应。无论采用哪种表现形式，同一字符所对应的 Unicode 码点都是一样的，只不过在存储和传输的时候，把码点做了不同的转换。</p>
+<ol start="2">
+<li>UTF-16<br>2个或4个字节存储一个字符<br>2字节：从0x0 - 0xFFFF的码段(BMP)，编码后的数值和unicode对应的码点一致</li>
+</ol>
+<p>4字节(两个双字节)：从0x10000 - 0x10FFFF的码点(SP，已经超过了BMP平面)，会根据规则，编码成一对16bit长的码元：如0x10437码点会编码成D801 DC37，它们叫做代理对(surrogate pair)</p>
+<p>4字节代理对的原理<br>从上面D801 DC37的例子可以发现，这两个码点都落在了BMP平面的码点范围之内，<u>并且都属于U+D800到U+DFFF码段</u>。没错，就是通过一系列规则，把超出BMP平面的码点(U+10437)转换成两个属于BMP平面的码点——U+D800到U+DFFF码段之间(U+D801和U+DC37)。</p>
+<p>大致解说<br>SP平面中的码点范围是从U+10000到U+10FFFF，共计FFFFF个，即2^20=1,048,576个，需要20位来表示。</p>
+<p>如果用两个双字节长的码点组成的序列来表示，第一个码点（称为高位代理）要容纳上述20位的前10位，第二个码点（称为低位代理）容纳上述20位的后10位。前后分别需要2^10=1024个码点来代理。而BMP平面的U+D800到U+DFFF码段正好有2048个码点，足以满足高位代理与低位代理的需要。</p>
+<p>因此需要将U+D800 - U+DFFF分为两段</p>
+<p>一段为高位代理初始值U+D800：U+D800 到 U+DBFF 之间的保留码点用于高位代理（leading surrogates）</p>
+<p>一段为低位代理初始值U+DC00：U+DC00 到 U+DFFF 之间的保留码点则用于低位代理（trailing surrogates）</p>
+<p>两段之间间隔2^10=1024，刚好各自能够满足前后10位</p>
+<p>例如U+10437编码（?）<br>0x10437<u>减去0x10000</u>，结果为0x00437，二进制为0000 0000 0100 0011 0111</p>
+<p>分区它的上10位值和下10位值（使用二进制）:0000000001 and 0000110111</p>
+<p>添加0xD800到上值，以形成高位：0xD800 + 0x0001 = 0xD801。</p>
+<p>添加0xDC00到下值，以形成低位：0xDC00 + 0x0037 = 0xDC37。</p>
+<p>得出它的UTF-16编码为D801 DC37</p>
 
         </div>
         <div class="post-tool">
