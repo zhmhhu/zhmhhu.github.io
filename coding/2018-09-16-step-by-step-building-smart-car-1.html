@@ -51,11 +51,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>java语言中object转为string的几种形式 - 赵小生的博客</title>
+<title>手把手教你打造智能小车（1）-树莓派及其他配件简介 - 赵小生的博客</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="在java项目的实际开发和应用中，常常需要用到将对象转为String这一基本功能。本文将对常用的转换方法进行一个总结。常用的方法有Object.toString()，(String)要转换的对象，String.valueOf(Object)等。下面对这些方法一一进行分析。">
+<meta name="description " content="打造智能小车的核心部件就是树莓派。树莓派是一个只有信用卡大小的微型电脑，它的功能足够强大，具有普通计算机的所有硬件配置。">
 </head>
 <body>
 <div id="nav">
@@ -178,7 +178,7 @@
 
     </ul>
 </div>
-<div><img width="100%" src="/images/default-photos.jpg" alt="photos"/></div>
+<div><img width="100%" src="https://ws2.sinaimg.cn/large/006tNc79gy1fvbic26yckj31kw0vwhdv.jpg" alt="photos"/></div>
 <div class="main-inner">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
@@ -188,35 +188,45 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
-                    <span title="最后编辑于2016-01-13">2016-01-13</span>
+                    <span title="最后编辑于2018-09-16">2018-09-16</span>
                 </p>
                 <p>不会讲故事的程序员不是好的水利工程师</p>
             </div>
-            <h2 class="post-title">java语言中Object转为String的几种形式</h2>
+            <h2 class="post-title">手把手教你打造智能小车（1）-树莓派及其他配件简介</h2>
             <div class="post-meta">
-                本文总共1766个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共1859个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>在java项目的实际开发和应用中，常常需要用到将对象转为String这一基本功能。本文将对常用的转换方法进行一个总结。常用的方法有Object.toString()，(String)要转换的对象，String.valueOf(Object)等。下面对这些方法一一进行分析。</p>
-<h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>采用 Object.toString()方法</p>
-<p>请看下面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object object = getObject();</span><br><span class="line">System.out.println(object.toString());</span><br></pre></td></tr></table></figure>
-<p>在这种使用方法中，因为java.lang.Object类里已有public方法.toString()，所以对任何严格意义上的java对象都可以调用此方法。但在使用时要注意，必须保证object不是null值，否则将抛出NullPointerException异常。采用这种方法时，通常派生类会覆盖Object里的toString()方法。</p>
-<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>采用类型转换(String)object方法</p>
-<p>这是标准的类型转换，将object转成String类型的值。</p>
-<p>使用这种方法时，需要注意的是类型必须能转成String类型。因此最好用instanceof做个类型检查，以判断是否可以转换。否则容易抛出CalssCastException异常。此外，需特别小心的是因定义为Object 类型的对象在转成String时语法检查并不会报错，这将可能导致潜在的错误存在。这时要格外小心。如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object obj = new Integer(100);</span><br><span class="line">String　strVal = (String)obj;</span><br></pre></td></tr></table></figure>
-<p>在运行时将会出错，因为将Integer类型强制转换为String类型，无法通过。但是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer obj = new Integer(100);</span><br><span class="line">String　strVal = (String)obj;</span><br></pre></td></tr></table></figure>
-<p>如此格式代码，将会报语法错误。<br>此外，因null值可以强制转换为任何java类类型，(String)null也是合法的。</p>
-<h2 id="方法3"><a href="#方法3" class="headerlink" title="方法3"></a>方法3</h2><p>采用String.valueOf(Object)</p>
-<p>String.valueOf(Object)的基础是Object.toString()。但它与Object.toString()又有所不同。在前面方法1的分析中提到，使用第一种时需保证不为null。但采用第三种方法时，将不用担心object是否为null值这一问题。为了便于说明问题，我们来分析一下相关的源代码。Jdk里String.valueOf(Object)源码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">　　/**</span><br><span class="line">　　 * Returns the string representation of the Object argument.</span><br><span class="line">　　 *</span><br><span class="line">　　 * @param　 obj　 an Object.</span><br><span class="line">　　 * @return　if the argument is null, then a string equal to</span><br><span class="line">　　 *　　　　　&quot;null&quot;; otherwise, the value of</span><br><span class="line">　　 *　　　　　obj.toString() is returned.</span><br><span class="line">　　 * @see　　 java.lang.Object.toString()</span><br><span class="line">　　 */</span><br><span class="line"></span><br><span class="line">　　public static String valueOf(Object obj) &#123;</span><br><span class="line"></span><br><span class="line">　　　 return (obj == null) ? &quot;null&quot; : obj.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从上面的源码可以很清晰的看出null值不用担心的理由。但是，这也恰恰给了我们隐患。我们应当注意到，当object为null时，String.valueOf(object)的值是字符串”null”，而不是null!在使用过程中切记要注意。试想一下，如果我们用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object object = null;</span><br><span class="line">System.out.println(String.valueOf(object)==null);</span><br></pre></td></tr></table></figure>
-<p>将会输出false.</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总之，第三种方法使用比较方便，但是需要注意null类型的数据转换之后变成了字符串“null”，而不是空格“”。</p>
+            <h2 id="树莓派及其使用配置"><a href="#树莓派及其使用配置" class="headerlink" title="树莓派及其使用配置"></a>树莓派及其使用配置</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>打造智能小车的核心部件就是树莓派。树莓派是一个只有信用卡大小的微型电脑，它的功能足够强大，具有普通计算机的所有硬件配置，比如CPU、内存、显卡、声卡、wifi、蓝牙、USB接口和网线接口。可以说，树莓派就是一部浓缩版的计算机。不仅如此，它还带有 40 个引脚，通过引脚可以控制其他设备，进而增加功能。</p>
+<p>我这里使用的树莓派型号是 Raspberry PI 3 Model B（以下简称 3B），现在已经有了功能更加强大的 3B+，与 3B 相比，升级了内存和网卡等等，售价也更高。点击<a href="http://shumeipai.nxez.com/raspberry-pi-version-compare" target="_blank" rel="noopener">这里</a>可以查看树莓派各版本对照表。3B 在某宝的售价是 200 左右。与普通计算机相比，简直是便宜得不要不要的。</p>
+<h3 id="制作树莓派的SD卡"><a href="#制作树莓派的SD卡" class="headerlink" title="制作树莓派的SD卡"></a>制作树莓派的SD卡</h3><p>树莓派本身不带有硬盘，SD卡就是它的硬盘。所有的操作系统文件都要写到 SD 卡里面。换句话说，如果树莓派里的软件坏了启动不了，换一张装有全新操作系统的 SD 卡就可以了。所以树莓派本身不会有软件故障，故障都出在 SD 卡上。<br>在使用树莓派之前，要先把操作系统刷进去。刷机的操作也很简单，到官方网站上下载安装镜像，用刷机软件烧录进 SD 卡就可以了。点击<a href="http://shumeipai.nxez.com/download#tools" target="_blank" rel="noopener">这里</a>查看详细教程。</p>
+<h3 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h3><p>把装有操作系统的 SD 卡 插入树莓派卡槽，通电，系统会自动开机。在使用之前，要对其进行初始配置。为了看到开机画面，可以使用 HDMI 线连接树莓派和 具有 HDMI 接口的显示器，或者电视机也行。</p>
+<p>只初始配置需要连接显示器，之后的使用过程，我们可以用其他电脑远程登录树莓派，不再需要接显示器了。</p>
+<p>树莓派开机后会启动配置向导，安装提示一步步傻瓜式的操作下去就可以了。设置国家和地区 -&gt;设置用户名和密码（以后远程登录也用这个用户名密码）-&gt;选择 wifi 网络 -&gt; 检查更新 -&gt; 重启</p>
+<p>下图是树莓派启动后的默认桌面<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fvbic26yckj31kw0vwhdv.jpg" alt=""></p>
+<p>对了，输入用户名和密码的时候，你需要鼠标和键盘，把 USB 接口直接插上去就可以使用了，就跟你用其他的电脑一样。</p>
+<p>启动配置的图文并茂教程请查看<a href="http://shumeipai.nxez.com/2018/07/09/raspbian-2018-06-17-new-features-and-configuration.html" target="_blank" rel="noopener">这里</a>，做到重启一步就可以了，后面的操作不一定跟它一样。</p>
+<h3 id="远程连接"><a href="#远程连接" class="headerlink" title="远程连接"></a>远程连接</h3><p>每次使用树莓派都要接显示器和键盘鼠标是不是很麻烦？其实有更好的方式就是远程连接。通过远程连接，可以实现与直接操作一样的效果，何乐而不为？</p>
+<p>实现远程连接需要安装 VNCserver，幸运的是，最新的操作系统默认自带VNCserver。如果你不幸刷的安装包是没有 VNCserver 的也没有关系，装一个就是了。</p>
+<p>打开树莓派的命令行界面，输入以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install realvnc-vnc-server realvnc-vnc-viewer</span><br></pre></td></tr></table></figure></p>
+<p>稍等片刻，就装好VNCserver，可能要重启才会生效。</p>
+<p>之后，只要开启远程连接功能就可以了。</p>
+<p>打开命令行,输入 <code>sudo  raspi-config</code> ，将显示系统配置界面，如下图。<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fvbixeu9bij30gr077dg3.jpg" alt=""></p>
+<p>选择 <code>5 Interfacing Options</code>，进入如下画面<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fvbj1fq3ozj30zm0ee0wu.jpg" alt=""></p>
+<p>选择 <code>P3 VNC</code>，之后选择 <code>True</code>。树莓派远程配置就完成了。</p>
+<p>下面要在你的电脑上安装 VNCserver，这样才能成功控制树莓派。</p>
+<p>安装方式也很简单，点击 <a href="https://www.realvnc.com/en/connect/download/viewer/" target="_blank" rel="noopener">链接</a>，根据自己的操作系统选择对应的版本下载安装就好啦。比如，我的是MAC book，就选择“MACos”，下载的安装包名为“VNC-Viewer-6.18.907-MacOSX-x86_64.dmg”</p>
+<p>安装完之后，打开，并输入树莓派的内网 IP 地址，之后输入用户名和密码就可以成功连接了。<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fvbjam6bksj30dr09j746.jpg" alt=""></p>
+<p>除了 VNCserver 之外，还有 tightvncserver 也可以进行远程连接，但个人认为不好用，因为我搞了半天，都没有配置好剪贴板共享。最后还是发现系统自带 VNCserver 很好用，推荐用这个。</p>
+<h2 id="其他配件"><a href="#其他配件" class="headerlink" title="其他配件"></a>其他配件</h2><p>下面这些配件就比较简单了，买过来就行，不需要配置。某宝上都有，就不给链接了，免得有做广告的嫌疑。</p>
+<p>LED灯，数量不限，最好5个以上吧，怕烧坏的话就多备几个，反正不贵。</p>
+<p>L298n 电机驱动板，1个。</p>
+<p>驱动电机，4个。</p>
+<p>车架及轮子等，1套。这个五花八门的太多，如果要做成跟我一样的，就到<a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.19052e8d0gZcV5&amp;id=40760596290&amp;_u=glfvo14793c" target="_blank" rel="noopener">这里</a>买，如果你想买质量更好的，就到网上找。</p>
+<p>杜邦线，公对母，母对母，公对公各 20 左右，多备点更好。长度以 20cm 为宜。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fvbkp3jawbj30sg0lcn9k.jpg" alt=""></p>
+<p>有这些就可以打造可以进行方向控制的小车了，至于做功能升级要用到的传感器，在后面的教程里会具体再说。</p>
 
         </div>
         <div class="post-tool">
@@ -227,7 +237,7 @@
         
         <div class="post-tags">标签：
             
-            <a href="/tags/java/">java</a>
+            <a href="/tags/javascript/">javascript</a>
             
         </div>
         
@@ -243,8 +253,8 @@
      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
      */
     var disqus_config = function () {
-        this.page.url = 'http://zhmhhu.github.io/coding/2016-01-13-java-object-string.html';
-        this.page.identifier = 'coding/2016-01-13-java-object-string.html';
+        this.page.url = 'http://zhmhhu.github.io/coding/2018-09-16-step-by-step-building-smart-car-1.html';
+        this.page.identifier = 'coding/2018-09-16-step-by-step-building-smart-car-1.html';
     };
     (function () { // DON'T EDIT BELOW THIS LINE
         var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');
