@@ -51,11 +51,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>git 常用操作(二) - 赵小生的博客</title>
+<title>手把手教你打造智能小车（4）-使用传感器自动避障 - 赵小生的博客</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="删除的远程仓库，如何重新连接？将远程git仓库里的指定分支拉取到本地（本地不存在的分支）？如何保持 github 上 fork 的项目与原项目同步？">
+<meta name="description " content="">
 </head>
 <body>
 <div id="nav">
@@ -178,7 +178,7 @@
 
     </ul>
 </div>
-<div><img width="100%" src="https://ws4.sinaimg.cn/large/006tNbRwgy1fv7u88cfidj30j407edfx.jpg" alt="photos"/></div>
+<div><img width="100%" src="/images/default-photos.jpg" alt="photos"/></div>
 <div class="main-inner">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
@@ -188,46 +188,17 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
-                    <span title="最后编辑于2018-09-13">2018-09-13</span>
+                    <span title="最后编辑于2018-09-23">2018-09-23</span>
                 </p>
                 <p>不会讲故事的程序员不是好的水利工程师</p>
             </div>
-            <h2 class="post-title">git 常用操作(二)</h2>
+            <h2 class="post-title">手把手教你打造智能小车（4）-使用传感器自动避障</h2>
             <div class="post-meta">
-                本文总共1711个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共11个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2 id="删除的远程仓库，如何重新连接？"><a href="#删除的远程仓库，如何重新连接？" class="headerlink" title="删除的远程仓库，如何重新连接？"></a>删除的远程仓库，如何重新连接？</h2><p>不小心删除了远程仓库的连接，用 git remote 查询之后结果为空，如何重新建立起连接？使用如下命令即可恢复。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/username/YourRepository.git</span><br></pre></td></tr></table></figure>
-<p>中间的地址换成自己的代码仓库地址。<br>注意，此时本地仓库并没有追踪远程分支，使用 <code>git fetch origin</code> 命令重新追踪远程分支。<br>再使用 <code>git branch</code> 命令就可以查看到所有本地和远程的分支了。</p>
-<h2 id="将远程git仓库里的指定分支拉取到本地（本地不存在的分支）"><a href="#将远程git仓库里的指定分支拉取到本地（本地不存在的分支）" class="headerlink" title="将远程git仓库里的指定分支拉取到本地（本地不存在的分支）"></a>将远程git仓库里的指定分支拉取到本地（本地不存在的分支）</h2><p>通常，从远程仓库拉取分支到本地，操作方法是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br></pre></td></tr></table></figure></p>
-<p>拉取指定远程仓库指定分支到本地仓库指定分支,如不指定本地分支，默认是当前分支。</p>
-<p>当我想从远程仓库里拉取一条本地不存在的分支时，应当使用如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;本地分支名&gt; &lt;远程主机名&gt;/&lt;远程分支名&gt;</span><br></pre></td></tr></table></figure></p>
-<p>这个将会自动创建一个新的本地分支，并与指定的远程分支关联起来。</p>
-<p>例如远程仓库里有个分支dev2,我本地没有该分支，我要把dev2拉到我本地：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev2 origin/dev2</span><br></pre></td></tr></table></figure></p>
-<p>若成功，将会在本地创建新分支dev2,并自动切到dev2上。</p>
-<p>如果出现提示：</p>
-<p>fatal: Cannot update paths and switch to branch ‘dev2’ at the same time.<br>Did you intend to checkout ‘origin/dev2’ which can not be resolved as commit?</p>
-<p>表示拉取不成功。我们需要先执行 <code>git fetch</code>，然后再执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev2 origin/dev2</span><br></pre></td></tr></table></figure></p>
-<p>此时本地新建的分支dev2与远程分支dev2保持一致。</p>
-<h2 id="如何保持-github-上-fork-的项目与原项目同步"><a href="#如何保持-github-上-fork-的项目与原项目同步" class="headerlink" title="如何保持 github 上 fork 的项目与原项目同步"></a>如何保持 github 上 fork 的项目与原项目同步</h2><p>fork 了别人的项目，一段时间之后，发现原项目更新了，如何把原项目的变更同步到自己 fork 的项目中，可以通过新建一个 upstream 远程主机来解决。操作方法如下。</p>
-<p>第一步：通过 github 的 web 页面 fork 目标项目,然后使用 git clone 命令在本地克隆自己 fork 的项目：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/YOUR-USERNAME/project—name</span><br></pre></td></tr></table></figure>
-<p>切换到此项目的路径下，使用如下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-<p>可以看到当前项目的远程仓库配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">github  https://github.com/YOUR-USERNAME/project—name.git (fetch)</span><br><span class="line">github  https://github.com/YOUR-USERNAME/project—name.git (push)</span><br></pre></td></tr></table></figure>
-<p>第二步：复制被自己 fork 的原项目的 git 地址使用下面的命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add upstream 原始项目仓库的 git 地址</span><br></pre></td></tr></table></figure>
-<p>如果继续使用 <code>git remove -v</code> 命令查看的话，就会发现这个时候该项目已经和原始的被fork的项目产生了关联。</p>
-<p>第三步：保持 fork 之后的项目与原项目同步，使用如下的命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch upstream</span><br></pre></td></tr></table></figure>
-<p>之后，把原项目合并到自己 folk 之后的项目，比如合并到自己项目的 master 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge upstream/master</span><br></pre></td></tr></table></figure></p>
-<p>如有冲突，需手动修改有冲突的代码。此时已经完成了 fork 项目与原项目同步，如果需要把项目代码推送到自己的远程仓库，就继续进行第四步。</p>
-<p>第四步：push 本地项目代码到远程仓库，<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure></p>
-<p>这样就完成了推送本地仓库的 master 分支到远程仓库（默认是与本地分支同名的远程分支)。</p>
-
+            <h2 id="超声波传感器"><a href="#超声波传感器" class="headerlink" title="超声波传感器"></a>超声波传感器</h2><h2 id="红外传感器"><a href="#红外传感器" class="headerlink" title="红外传感器"></a>红外传感器</h2>
         </div>
         <div class="post-tool">
             <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
@@ -237,7 +208,7 @@
         
         <div class="post-tags">标签：
             
-            <a href="/tags/javascript/">javascript</a>
+            <a href="/tags/CoolTech/">黑科技</a>
             
         </div>
         
@@ -245,12 +216,12 @@
         <div class="post-nav">
             
               <div class="post-nav-prev post-nav-item">下一篇：
-                <a href="/technology/2018-09-16-step-by-step-building-smart-car-0.html" >手把手教你打造智能小车（0）-写在前面的话</a>
+                <a href="/coding/2018-09-24-step-by-step-building-smart-car-5.html" >手把手教你打造智能小车（5）-使用舵机打造摄像机云台</a>
               </div>
               
               
               <div class="post-nav-next post-nav-item">上一篇：
-                <a href="/coding/2018-09-10-Why-you-should-replace-forEach-with-map-and-filter-inJavaScript.html" >在 JavaScript 中 为什么你应当使用 map 和 filter 来替代 forEach</a>
+                <a href="/technology/2018-09-23-step-by-step-building-smart-car-3.html" >手把手教你打造智能小车（3）-小车跑起来</a>
               </div>
             
         </div>
@@ -266,8 +237,8 @@
      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
      */
     var disqus_config = function () {
-        this.page.url = 'http://zhmhhu.github.io/coding/2018-09-13-git-common-operation-2.html';
-        this.page.identifier = 'coding/2018-09-13-git-common-operation-2.html';
+        this.page.url = 'http://zhmhhu.github.io/technology/2018-09-23-step-by-step-building-smart-car-4.html';
+        this.page.identifier = 'technology/2018-09-23-step-by-step-building-smart-car-4.html';
     };
     (function () { // DON'T EDIT BELOW THIS LINE
         var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');

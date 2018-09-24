@@ -51,11 +51,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>git 常用操作(二) - 赵小生的博客</title>
+<title>手把手教你打造智能小车（0）-写在前面的话 - 赵小生的博客</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="删除的远程仓库，如何重新连接？将远程git仓库里的指定分支拉取到本地（本地不存在的分支）？如何保持 github 上 fork 的项目与原项目同步？">
+<meta name="description " content="每个男孩都有一个机器人的梦，这个梦也许就是从第一次玩遥控汽车玩具开始的。现如今，我们可以自己打造一个功能更加强大，更加“智能”的遥控小车，我们有什么理由不开始动手呢。">
 </head>
 <body>
 <div id="nav">
@@ -178,7 +178,7 @@
 
     </ul>
 </div>
-<div><img width="100%" src="https://ws4.sinaimg.cn/large/006tNbRwgy1fv7u88cfidj30j407edfx.jpg" alt="photos"/></div>
+<div><img width="100%" src="https://ws3.sinaimg.cn/large/006tNc79gy1fvbl4vo55qj30u00min15.jpg" alt="photos"/></div>
 <div class="main-inner">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
@@ -188,45 +188,27 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
-                    <span title="最后编辑于2018-09-13">2018-09-13</span>
+                    <span title="最后编辑于2018-09-16">2018-09-16</span>
                 </p>
                 <p>不会讲故事的程序员不是好的水利工程师</p>
             </div>
-            <h2 class="post-title">git 常用操作(二)</h2>
+            <h2 class="post-title">手把手教你打造智能小车（0）-写在前面的话</h2>
             <div class="post-meta">
-                本文总共1711个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共1198个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2 id="删除的远程仓库，如何重新连接？"><a href="#删除的远程仓库，如何重新连接？" class="headerlink" title="删除的远程仓库，如何重新连接？"></a>删除的远程仓库，如何重新连接？</h2><p>不小心删除了远程仓库的连接，用 git remote 查询之后结果为空，如何重新建立起连接？使用如下命令即可恢复。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/username/YourRepository.git</span><br></pre></td></tr></table></figure>
-<p>中间的地址换成自己的代码仓库地址。<br>注意，此时本地仓库并没有追踪远程分支，使用 <code>git fetch origin</code> 命令重新追踪远程分支。<br>再使用 <code>git branch</code> 命令就可以查看到所有本地和远程的分支了。</p>
-<h2 id="将远程git仓库里的指定分支拉取到本地（本地不存在的分支）"><a href="#将远程git仓库里的指定分支拉取到本地（本地不存在的分支）" class="headerlink" title="将远程git仓库里的指定分支拉取到本地（本地不存在的分支）"></a>将远程git仓库里的指定分支拉取到本地（本地不存在的分支）</h2><p>通常，从远程仓库拉取分支到本地，操作方法是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br></pre></td></tr></table></figure></p>
-<p>拉取指定远程仓库指定分支到本地仓库指定分支,如不指定本地分支，默认是当前分支。</p>
-<p>当我想从远程仓库里拉取一条本地不存在的分支时，应当使用如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b &lt;本地分支名&gt; &lt;远程主机名&gt;/&lt;远程分支名&gt;</span><br></pre></td></tr></table></figure></p>
-<p>这个将会自动创建一个新的本地分支，并与指定的远程分支关联起来。</p>
-<p>例如远程仓库里有个分支dev2,我本地没有该分支，我要把dev2拉到我本地：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev2 origin/dev2</span><br></pre></td></tr></table></figure></p>
-<p>若成功，将会在本地创建新分支dev2,并自动切到dev2上。</p>
-<p>如果出现提示：</p>
-<p>fatal: Cannot update paths and switch to branch ‘dev2’ at the same time.<br>Did you intend to checkout ‘origin/dev2’ which can not be resolved as commit?</p>
-<p>表示拉取不成功。我们需要先执行 <code>git fetch</code>，然后再执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b dev2 origin/dev2</span><br></pre></td></tr></table></figure></p>
-<p>此时本地新建的分支dev2与远程分支dev2保持一致。</p>
-<h2 id="如何保持-github-上-fork-的项目与原项目同步"><a href="#如何保持-github-上-fork-的项目与原项目同步" class="headerlink" title="如何保持 github 上 fork 的项目与原项目同步"></a>如何保持 github 上 fork 的项目与原项目同步</h2><p>fork 了别人的项目，一段时间之后，发现原项目更新了，如何把原项目的变更同步到自己 fork 的项目中，可以通过新建一个 upstream 远程主机来解决。操作方法如下。</p>
-<p>第一步：通过 github 的 web 页面 fork 目标项目,然后使用 git clone 命令在本地克隆自己 fork 的项目：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/YOUR-USERNAME/project—name</span><br></pre></td></tr></table></figure>
-<p>切换到此项目的路径下，使用如下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-<p>可以看到当前项目的远程仓库配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">github  https://github.com/YOUR-USERNAME/project—name.git (fetch)</span><br><span class="line">github  https://github.com/YOUR-USERNAME/project—name.git (push)</span><br></pre></td></tr></table></figure>
-<p>第二步：复制被自己 fork 的原项目的 git 地址使用下面的命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add upstream 原始项目仓库的 git 地址</span><br></pre></td></tr></table></figure>
-<p>如果继续使用 <code>git remove -v</code> 命令查看的话，就会发现这个时候该项目已经和原始的被fork的项目产生了关联。</p>
-<p>第三步：保持 fork 之后的项目与原项目同步，使用如下的命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch upstream</span><br></pre></td></tr></table></figure>
-<p>之后，把原项目合并到自己 folk 之后的项目，比如合并到自己项目的 master 分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge upstream/master</span><br></pre></td></tr></table></figure></p>
-<p>如有冲突，需手动修改有冲突的代码。此时已经完成了 fork 项目与原项目同步，如果需要把项目代码推送到自己的远程仓库，就继续进行第四步。</p>
-<p>第四步：push 本地项目代码到远程仓库，<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure></p>
-<p>这样就完成了推送本地仓库的 master 分支到远程仓库（默认是与本地分支同名的远程分支)。</p>
+            <p>每个男孩都有一个机器人的梦，这个梦也许就是从第一次玩遥控汽车玩具开始的。只是那时的男孩还不能够明白，神奇的小车为什么能够按照自己的指令行动，随着知识的增长，他开始明白了一个叫做电磁波的东西传递这其中的指令。如果把这其中的东西拆解，会发现其实并不难以理解。现如今，我们可以自己打造一个功能更加强大，更加“智能”的遥控小车，所需要的只是简单的写几句代码而已。我们有什么理由不开始动手呢。</p>
+<p>使用树莓派打造的的智能小车就是这样一个功能强大的遥控小车。你可以加装任何你需要的传感器升级小车的功能，比如，躲避障碍，探测前方目标距离等等。你也可以使用更加厉害的语音识别和图像识别算法使它更加高大上。我在这个系列的教程里面会详细记录智能小车功能不断升级的过程，如果你有兴趣，可以按照我的记录一步一步耐心细致的实现。</p>
+<p>当然，在实际制作过程中，由于使用的设备、编程环境并不一致，也许会遇到各种各样的“意外”，使你并不能完全按照我所记录的一步步顺利走下去，不过没关系，我本人也是从最简单的功能开始，一步步不断提高复杂度。如果遇到困难实在没法解决，可以在评论里留言，或者请教你周围的高人。另外网上也有很多类似的教程，遇到问题的时候，也可以搜索参考。</p>
+<p>实现智能小车的方式有很多种，开发工具和语言也是五花八门。我这里记录的是我的实现历程，所以一切开发工具和语言都以我熟悉的为主，适当会提及一下其他开发环境的配置。</p>
+<p>以下是功能清单</p>
+<p>初级<br>1、LED灯控制（亮度调节，闪烁频率调节）<br>2、小车转向控制</p>
+<p>中级<br>1、使用红外避障传感器躲避障碍<br>2、使用巡线传感器寻黑线轨迹<br>3、使用超声波距离传感器探测前方目标距离<br>4、使用人体红外传感器监测人体位置<br>4、搭载摄像头并回传实时图像<br>5、打造摄像头云台<br>6、加装机械臂并对其进行控制</p>
+<p>高级<br>1、智能语音控制（使用麦克风，手机APP或者微信传递语音指令）<br>2、使用摄像头进行人脸识别<br>3、使用深度学习算法进行目标检测<br>4、目标追踪并自动响应</p>
+<p>我把功能分为三个级别，它们所需要的知识背景要求也是递增的。初级功能足够简单，也许高中生就可以轻松实现。而高级功能由于涉及到一些人工智能的知识，需要至少本科毕业才能够掌握（如果你是天才少年，就当我什么都没说），尽管我用的也是一些开放平台的API，并没有涉及到核心算法。但要实现起来，也需要掌握足够多的计算机编程知识。</p>
+<p>自己实现智能小车是很有意思的事情，通过这一过程，普通人都可以了解各种各样的传感器和电路知识；科技爱好者也可以用人工智能算法实现一些实实在在的东西，而不仅限于大而无当的概念宣传；学生们可以通过这个完成毕业设计课程（并不仅限于我提到的功能，可以扩展更多功能）；而爸爸们也可以手动打造一个小玩具给自己的孩子，比起从市场上买的那些成品，这个是不是更有纪念意义呢？</p>
+<p>技术每天都在突飞猛进的发展，此功能清单也许会更新。如果你有更好的建议和想法，欢迎交流。</p>
 
         </div>
         <div class="post-tool">
@@ -237,7 +219,7 @@
         
         <div class="post-tags">标签：
             
-            <a href="/tags/javascript/">javascript</a>
+            <a href="/tags/CoolTech/">黑科技</a>
             
         </div>
         
@@ -245,12 +227,12 @@
         <div class="post-nav">
             
               <div class="post-nav-prev post-nav-item">下一篇：
-                <a href="/technology/2018-09-16-step-by-step-building-smart-car-0.html" >手把手教你打造智能小车（0）-写在前面的话</a>
+                <a href="/technology/2018-09-16-step-by-step-building-smart-car-1.html" >手把手教你打造智能小车（1）-树莓派及其他配件简介</a>
               </div>
               
               
               <div class="post-nav-next post-nav-item">上一篇：
-                <a href="/coding/2018-09-10-Why-you-should-replace-forEach-with-map-and-filter-inJavaScript.html" >在 JavaScript 中 为什么你应当使用 map 和 filter 来替代 forEach</a>
+                <a href="/coding/2018-09-13-git-common-operation-2.html" >git 常用操作(二)</a>
               </div>
             
         </div>
@@ -266,8 +248,8 @@
      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
      */
     var disqus_config = function () {
-        this.page.url = 'http://zhmhhu.github.io/coding/2018-09-13-git-common-operation-2.html';
-        this.page.identifier = 'coding/2018-09-13-git-common-operation-2.html';
+        this.page.url = 'http://zhmhhu.github.io/technology/2018-09-16-step-by-step-building-smart-car-0.html';
+        this.page.identifier = 'technology/2018-09-16-step-by-step-building-smart-car-0.html';
     };
     (function () { // DON'T EDIT BELOW THIS LINE
         var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');
