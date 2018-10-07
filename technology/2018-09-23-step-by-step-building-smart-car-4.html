@@ -55,7 +55,7 @@
 
 <meta name="keywords" content="">
 
-<meta name="description " content="">
+<meta name="description " content="本文介绍使用超声波传感器探测前面目标距离，以及如何使用红外传感器躲避障碍。">
 </head>
 <body>
 <div id="nav">
@@ -178,7 +178,7 @@
 
     </ul>
 </div>
-<div><img width="100%" src="/images/default-photos.jpg" alt="photos"/></div>
+<div><img width="100%" src="https://ws4.sinaimg.cn/large/006tNbRwgy1fvznwtun4uj30m80d53zp.jpg" alt="photos"/></div>
 <div class="main-inner">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-header">
@@ -194,11 +194,45 @@
             </div>
             <h2 class="post-title">手把手教你打造智能小车（4）-使用传感器自动避障</h2>
             <div class="post-meta">
-                本文总共11个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共2675个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2 id="超声波传感器"><a href="#超声波传感器" class="headerlink" title="超声波传感器"></a>超声波传感器</h2><h2 id="红外传感器"><a href="#红外传感器" class="headerlink" title="红外传感器"></a>红外传感器</h2>
+            <h2 id="1-超声波传感器"><a href="#1-超声波传感器" class="headerlink" title="1. 超声波传感器"></a>1. 超声波传感器</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><p>超声波传感器是一种广泛使用的距离传感器。本文使用树莓派连接 HC-SR04 超声波测距传感器，用python GPIO 控制传感器完成距离测定，并控制小车在前方障碍小于某一特定值时，做出“停止”、“后退”等一系列动作。</p>
+<p>HC-SR04 超声波距离传感器模块可提供 2cm - 400cm 的非接触式距离感测功能，测距精度可达高到3mm。模块包括超声波发射器、接收器与控制电路。如下图。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fvznwtun4uj30m80d53zp.jpg" alt=""></p>
+<h3 id="1-2-工作原理"><a href="#1-2-工作原理" class="headerlink" title="1.2 工作原理"></a>1.2 工作原理</h3><p>传感器的基本工作原理是</p>
+<p>(1)给 IO 口 TRIG 至少 10 μs 的高电平信号触发测距；</p>
+<p>(2)模块自动发送 8 个 40 khz 的方波，自动检测是否有信号返回；</p>
+<p>(3)有信号返回，通过 IO 口 ECHO 输出一个高电平，高电平持续的时间就是超声波从发射到返回的时间。因此，可以得到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">测试距离=(高电平时间*声速)/2  #声速一般取340 m/s</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-3-接线方式"><a href="#1-3-接线方式" class="headerlink" title="1.3 接线方式"></a>1.3 接线方式</h3><p>HC-SR04 超声波距离传感器模块共有四个引脚，其中有两个电源引脚和两个控制引脚。</p>
+<ol>
+<li><p>Vcc 和 Gnd 是电源引脚，Vcc 接树莓派GPIO 口输出的 5v 电源接口，Gnd 接树莓派任意一个 Gnd 接口。理论上说，Vcc 和 Gnd 接任意的 5v DC 电源都行，但最好使用树莓派的 GPIO 口供电，不然会影响这个模块的运行。</p>
+</li>
+<li><p>Trig 引脚用来接收树莓派的控制信号。接任意 GPIO 口。</p>
+</li>
+<li><p>Echo 引脚用来向树莓派返回测距信息。接任意 GPIO 口。</p>
+</li>
+</ol>
+<p>(注意 Echo 返回的是 5v信号，而树莓派的 GPIO 接收超过 3.3v 的信号可能会被烧毁，为保证树莓派 GPIO 口 安全，最好加一个分压电路，我这里没有加，直接用杜邦线连的)。</p>
+<h3 id="1-4-使用方法"><a href="#1-4-使用方法" class="headerlink" title="1.4 使用方法"></a>1.4 使用方法</h3><p>使用 Python 的 GPIO 库操作超声波传感器方法如下。</p>
+<p>首先创建一个测距函数，该函数将返回目标物的距离。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import RPi.GPIO as GPIO</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">########超声波传感器接口定义#################</span><br><span class="line">Trig = 38</span><br><span class="line">Echo = 40</span><br><span class="line"># 超声波距离探测</span><br><span class="line">def checkdist(self):</span><br><span class="line">	GPIO.setup(Trig, GPIO.OUT, initial=GPIO.LOW)</span><br><span class="line">	GPIO.setup(Echo, GPIO.IN)</span><br><span class="line">	GPIO.output(Trig, GPIO.HIGH)</span><br><span class="line">	time.sleep(0.00015)</span><br><span class="line">	GPIO.output(Trig, GPIO.LOW)</span><br><span class="line">	while not GPIO.input(Echo):</span><br><span class="line">		pass</span><br><span class="line">	t1 = time.time()</span><br><span class="line">	while GPIO.input(Echo):</span><br><span class="line">		pass</span><br><span class="line">	t2 = time.time()</span><br><span class="line">	return (t2-t1)*340*100/2</span><br></pre></td></tr></table></figure></p>
+<p>之后，循环执行这一函数，并把测得的目标物距离显示出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def distStart():</span><br><span class="line">	try:</span><br><span class="line">    while True:</span><br><span class="line">        print &apos;目标距离:%0.2f cm&apos; % checkdist()</span><br><span class="line">        time.sleep(0.5)</span><br><span class="line">	except KeyboardInterrupt:</span><br><span class="line">    	GPIO.cleanup()</span><br><span class="line"></span><br><span class="line">distStart()</span><br></pre></td></tr></table></figure>
+<p>保存代码并执行，可以看到，每隔 0.5秒，系统将显示前方目标物的距离。</p>
+<h2 id="2-红外传感器"><a href="#2-红外传感器" class="headerlink" title="2. 红外传感器"></a>2. 红外传感器</h2><h3 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h3><p>红外传感器是专为轮式机器人设计的一款距离可调的避障传感器。其具有一对红外线发射与接收管，发射管发射出一定频率的红外线，当检测方向遇到障碍物（反射面）时，红外线反射回来被接收管接收，此时指示灯亮起，经过电路处理后，信号输出接口输出数字信号，通过探测此信号来判断前方有障碍物。<br>工作电压为3.3V-5V，由于工作电压范围宽泛，在电源电压波动比较大的情况下仍能稳定工作，具有干扰小、便于装配、使用方便等特点，可以广泛应用于机器人避障、 避障小车、流水线计数及黑白线循迹等众多场合。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fvzrpac320j30dw0dw3ym.jpg" alt=""></p>
+<h3 id="2-2-使用说明"><a href="#2-2-使用说明" class="headerlink" title="2.2 使用说明"></a>2.2 使用说明</h3><p>红外传感器的工作电压为DC 3.3V-5V，可直接与树莓派的 5V 电压连接；工作温度 －10℃—＋50℃，可适应大部分工况；在指定距离内探测到障碍物时，电路板上指示灯点亮，同时 OUT 端口持续输出低电平信号，使用非常方便；另外，通过传感器上的电位器旋钮可以调节检测距离，有效距离 2 ～ 40 cm。</p>
+<p>接线方式如下：</p>
+<ol>
+<li>VCC 外接 3.3V-5V 电压(直接与树莓派 5v 电源接口相连)</li>
+<li>GND 外接 GND(与树莓派任意 GND 接口相连)</li>
+<li>OUT 输出接口（与树莓派 GPIO 口相连）</li>
+</ol>
+<h3 id="2-3-使用方法"><a href="#2-3-使用方法" class="headerlink" title="2.3 使用方法"></a>2.3 使用方法</h3><p>我们使用一个 LED灯来来作为有障碍物时发出的警告。Python代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import RPi.GPIO as GPIO</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">GPIO.setmode(GPIO.BOARD)</span><br><span class="line">GPIO.setwarnings(False)</span><br><span class="line">########红外传感器接口定义#################</span><br><span class="line">GPIO_OUT = 16</span><br><span class="line">led = 37 </span><br><span class="line">#设置引脚为输入和输出</span><br><span class="line">#设置16针脚为输入，接到红外避障传感器模块的out引脚</span><br><span class="line">GPIO.setup(GPIO_OUT,GPIO.IN) </span><br><span class="line">GPIO.setup(led,GPIO.OUT)     </span><br><span class="line"> </span><br><span class="line">def warn():   </span><br><span class="line">	GPIO.output(led,GPIO.HIGH) #亮灯来作为有障碍物时发出的警告</span><br><span class="line">	time.sleep(0.5)</span><br><span class="line">	GPIO.output(led,GPIO.LOW)</span><br><span class="line">	time.sleep(0.5)</span><br><span class="line">		</span><br><span class="line">while True:</span><br><span class="line">	if GPIO.input(GPIO_OUT)==0: #当有障碍物时，传感器输出低电平，所以检测低电平</span><br><span class="line">		warn()</span><br><span class="line">GPIO.cleanup()</span><br></pre></td></tr></table></figure></p>
+<p>保存代码并执行，然后将手挡在传感器前，就会看到 LED 灯一闪一闪的，拿开手时，LED 灯将熄灭。转动传感器上的电位器旋钮，可以发现红外传感器发出警告时，目标的距离会发生变化。选择合适的告警距离，大约 15 cm 就可以了。</p>
+<p>将超声波测距功能和红外避障功能加入到小车转向控制代码中，一个完整的自动避障小车就完成了。详细代码，见 <a href="https://github.com/zhmhhu/myPiCar" target="_blank" rel="noopener">Github</a>。</p>
+
         </div>
         <div class="post-tool">
             <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
@@ -216,7 +250,7 @@
         <div class="post-nav">
             
               <div class="post-nav-prev post-nav-item">下一篇：
-                <a href="/coding/2018-09-24-step-by-step-building-smart-car-5.html" >手把手教你打造智能小车（5）-使用舵机打造摄像机云台</a>
+                <a href="/technology/2018-09-24-step-by-step-building-smart-car-5.html" >手把手教你打造智能小车（5）-使用舵机打造摄像机云台</a>
               </div>
               
               
