@@ -194,11 +194,28 @@
             </div>
             <h2 class="post-title">手把手教你打造智能小车（3）-小车跑起来</h2>
             <div class="post-meta">
-                本文总共2442个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共2818个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2 id="1-小车组装"><a href="#1-小车组装" class="headerlink" title="1. 小车组装"></a>1. 小车组装</h2><p>有关树莓派的准备工作已经做好了，下面正式开始小车的制作。<br>首先把小车车架拼好，买来的车架包括 4 个直流电机、4个轮胎、一个电池盒、各种螺丝以及接线等等。如下图。</p>
+            <h2 id="1-配件列表"><a href="#1-配件列表" class="headerlink" title="1. 配件列表"></a>1. 配件列表</h2><p>下面这些配件是制作小车需要的东西，直接到网上购买，某宝上都有，就不给链接了，免得有做广告的嫌疑。</p>
+<ol>
+<li><p>LED灯，数量不限，最好5个以上吧，怕烧坏的话就多备几个，反正不贵。</p>
+</li>
+<li><p>L298n 电机驱动板，1个。</p>
+</li>
+<li><p>驱动电机，4个。有些是和车架一起卖的。</p>
+</li>
+<li><p>车架及轮子等，1套。这个五花八门的太多，如果要做成跟我一样的，就到<a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.19052e8d0gZcV5&amp;id=40760596290&amp;_u=glfvo14793c" target="_blank" rel="noopener">这里</a>买，如果你觉得质量不够好，可以到网上找更好的。</p>
+</li>
+<li><p>18650 电池，3节，以及相应的电池盒。这个是给电机供电的，因为电机的耗电量有点大，所以推荐使用可充电电池，如果不选择这个，那么四节干电池也是可以的。</p>
+</li>
+<li><p>杜邦线，公对母，母对母，公对公各 20 左右，多备点更好。长度以 20cm 为宜。</p>
+</li>
+</ol>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fvbkp3jawbj30sg0lcn9k.jpg" alt=""></p>
+<p>有这些就可以打造可以进行方向控制的小车了，至于功能升级要用到的传感器，在后面的教程里会具体再说。</p>
+<h2 id="2-小车组装"><a href="#2-小车组装" class="headerlink" title="2. 小车组装"></a>2. 小车组装</h2><p>有关树莓派的准备工作已经做好了，下面正式开始小车的制作。<br>首先把小车车架拼好，买来的车架包括 4 个直流电机、4个轮胎、一个电池盒、各种螺丝以及接线等等。如下图。</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwgy1fvkhbljah6j31kw23vh61.jpg" alt=""></p>
 <p>车架一般是配有有说明书的，组装车架本身也并不复杂，用固定片把各个电机固定好就基本 OK 了，需要注意的是马达朝向、螺丝朝向等小细节，有时候朝向不对会卡住轮子，或者不方便后续的绕线等操作。下图是电机安装图。<br><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fvkhcd281jj31kw23vgz3.jpg" alt=""></p>
 <p>图中的接线，红色代表正极，黑色代表负极。之后连接 L298n 电机驱动板的时候是要这样对接的。所以同一侧的电机，正负极应该是相对的。不过装错了也问题不大，后期跑起来的时候，感觉方向不对可以拆了重装。所以这一次，我们没有必要把所有螺丝都拧上，免得拆起来麻烦。</p>
@@ -209,9 +226,9 @@
 <ol>
 <li>电源部分</li>
 </ol>
-<p>12v power ： 接 7~12 v 直流电源。接 5v （如树莓派 GPIO 口输出的5v）是不能带动的，而且多树莓派来说也并不安全。所以推荐独立的电源。4 节干电池或者 3 节 18650 锂电池都可以。</p>
+<p>12v power ： 接 7~12 v 直流电源。接树莓派 GPIO 口输出的 5v 是不能带动的，而且对树莓派来说也并不安全。所以推荐独立的电源。上文提到 4 节干电池或者 3 节 18650 锂电池都可以。</p>
 <p>Power GND : 接地口。接树莓派的任何一个 GND 口都可以。</p>
-<p>5v power:  这个 5v 是输出的！给你的单片机或树莓派供电用的。不推荐使用，因为树莓派和 L298n 最好分开供电。分开供电的话这个脚悬空就行了！</p>
+<p>5v power:  这个需要接树莓派 GPIO 口 的 5v 输出接口。</p>
 <ol start="2">
 <li>输入部分</li>
 </ol>
@@ -232,10 +249,10 @@
 <h2 id="3-电机转动"><a href="#3-电机转动" class="headerlink" title="3. 电机转动"></a>3. 电机转动</h2><p>树莓派和 L298n 以及 马达接线连接起来之后，我们就应该来试试如何用树莓派通过 Python 来控制这个马达的转动。</p>
 <p>树莓派的 33、11、12 脚分别连到 A Enable、IN1 、IN2（把短接帽拿掉）。</p>
 <p>由控制表可知给 33 脚高电平，11 脚高电平，12 脚低电平，电机就会正转。</p>
-<p>新建 carCtrl.py 文件，写入代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import RPi.GPIO as GPIO</span><br><span class="line">import time</span><br><span class="line">GPIO.setmode(GPIO.BOARD)</span><br><span class="line"></span><br><span class="line">def go():</span><br><span class="line">    GPIO.setup(33,GPIO.OUT)</span><br><span class="line">    GPIO.setup(11,GPIO.OUT)</span><br><span class="line">    GPIO.setup(12,GPIO.OUT)</span><br><span class="line">    GPIO.output(33,True)</span><br><span class="line">    GPIO.output(11,True)</span><br><span class="line">    GPIO.output(12,False)</span><br><span class="line"></span><br><span class="line">go()</span><br><span class="line">#延时2秒之后执行cleanup释放GPIO接口</span><br><span class="line">time.sleep(2)</span><br><span class="line">GPIO.cleanup()</span><br></pre></td></tr></table></figure></p>
+<p>新建 motorStart.py 文件，写入代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import RPi.GPIO as GPIO</span><br><span class="line">import time</span><br><span class="line">GPIO.setmode(GPIO.BOARD)</span><br><span class="line"></span><br><span class="line">def go():</span><br><span class="line">    GPIO.setup(33,GPIO.OUT)</span><br><span class="line">    GPIO.setup(11,GPIO.OUT)</span><br><span class="line">    GPIO.setup(12,GPIO.OUT)</span><br><span class="line">    GPIO.output(33,True)</span><br><span class="line">    GPIO.output(11,True)</span><br><span class="line">    GPIO.output(12,False)</span><br><span class="line"></span><br><span class="line">go()</span><br><span class="line">#延时2秒之后执行cleanup释放GPIO接口</span><br><span class="line">time.sleep(2)</span><br><span class="line">GPIO.cleanup()</span><br></pre></td></tr></table></figure></p>
 <p>代码写完之后我们保存退出，接着执行一下观看马达有没有转动。</p>
 <h2 id="4-车速控制"><a href="#4-车速控制" class="headerlink" title="4. 车速控制"></a>4. 车速控制</h2><p>刚刚说过，A Enable 是用来控制 A 电机的行驶速度的，那么该如何实现了。<br><br>实现方式就是之前说过的 PWM。使用 PWM 控制 A Enable 端的平均电压的高低，较高的电压使车速增加，较低的电压使车速减小。而控制平均输出的电压的高低就是占空比。<br>在 carCtrl.py 文件中加入如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ENA = 33</span><br><span class="line">def changeSpeed():</span><br><span class="line">	leftpwm = GPIO.PWM(ENA, 50)</span><br><span class="line">	leftpwm.stop()</span><br><span class="line">	leftpwm.start(100)</span><br><span class="line">	leftpwm.ChangeDutyCycle(50)</span><br><span class="line">	print(&apos;changeSpeed&apos;+50)</span><br><span class="line"></span><br><span class="line">changeSpeed()</span><br></pre></td></tr></table></figure></p>
-<p>我们发现，电机的行驶速度减慢了。</p>
+<p>我们发现，电机的行驶速度减慢了。如果电机没有减速，而是直接停下了，那么有可能是电源电压太低了，请使用 12V 及以上的电源。</p>
 <h2 id="5-小车跑起来"><a href="#5-小车跑起来" class="headerlink" title="5. 小车跑起来"></a>5. 小车跑起来</h2><p>我们已经让马达转起来了。那么，接下来只要写 t_up(),t_down(),t_left(),t_right()四个函数，就可以控制小车的行驶方向了。<br>但是，我们在玩的时候，总不能每次都使用命令行来控制小车吧，其实，我们可以通过编写 web 程序使用网络来发送控制指令。</p>
 <p>我们使用 Python 中的 Flask 框架来搭建 web 程序。首先需要安装 Flask 框架，运行如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python3-flask</span><br></pre></td></tr></table></figure></p>
 <p>请注意，我这里使用的 Python3，在此之前，你需要运行先安装 Python3，树莓派默认的是 Python2。 </p>
