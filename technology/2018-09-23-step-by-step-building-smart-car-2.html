@@ -194,7 +194,7 @@
             </div>
             <h2 class="post-title">手把手教你打造智能小车（2）-点亮 LED 灯</h2>
             <div class="post-meta">
-                本文总共4011个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共4025个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
@@ -231,10 +231,10 @@
 <p>下面来实际操作一下。</p>
 <p>先按照下面这个图连线，正极插在 GPIO 25 引脚（物理位置为 22），负极插在 GND 引脚。LED 中有较大铁片的那一极为负。</p>
 <p><img src="https://wx3.sinaimg.cn/mw690/0060lm7Tly1fvkgf0zys3j30pa0e8kep.jpg" alt=""></p>
-<p>远程连接树莓派之后，先新建一个文件目录 pi_ws，在目录下新建文件 LED.py。</p>
+<p>远程连接树莓派之后，我们新建一个名为 myPiCar 的工作目录，在目录下新建文件 LED.py。</p>
 <p>将下面的代码手动输入到 LED.py 里面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import RPi.GPIO as GPIO</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">GPIO.setmode(GPIO.BCM)</span><br><span class="line">GPIO.setup(25, GPIO.OUT)</span><br></pre></td></tr></table></figure></p>
-<p>保存文件之后，打开命令行工具，使用 cd 命令切换到 pi_ws 文件目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ cd /pi_ws</span><br></pre></td></tr></table></figure></p>
-<p>运行 LED.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~/pi_ws $ python LED.py</span><br></pre></td></tr></table></figure></p>
+<p>保存文件之后，打开命令行工具，使用 cd 命令切换到 myPiCar 文件目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~ $ cd /myPiCar</span><br></pre></td></tr></table></figure></p>
+<p>运行 LED.py<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pi@raspberrypi:~/myPiCar $ python LED.py</span><br></pre></td></tr></table></figure></p>
 <p>可以看到 LED 灯已经亮了。</p>
 <p>在 LED.py 的文件最后加上如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">while True:</span><br><span class="line">    GPIO.output(25, GPIO.HIGH)</span><br><span class="line">    time.sleep(0.5)</span><br><span class="line">    GPIO.output(25, GPIO.LOW)</span><br><span class="line">    time.sleep(0.5)</span><br></pre></td></tr></table></figure></p>
 <p>使用 python 命令运行，可以发现 LED 灯在闪烁。</p>
