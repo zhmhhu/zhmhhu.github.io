@@ -194,7 +194,7 @@
             </div>
             <h2 class="post-title">手把手教你打造智能小车（5）-使用舵机打造摄像机云台</h2>
             <div class="post-meta">
-                本文总共5595个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共5592个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
@@ -270,9 +270,9 @@
 <p>这一数据可能跟舵机的实际数据有误差，在使用之前，我们需要先校准一下。</p>
 <h2 id="3-舵机控制"><a href="#3-舵机控制" class="headerlink" title="3 舵机控制"></a>3 舵机控制</h2><h3 id="3-1-舵机接线"><a href="#3-1-舵机接线" class="headerlink" title="3.1 舵机接线"></a>3.1 舵机接线</h3><p>舵机有三根引出的线，红线是电源线，可以接5V输入；棕线是地线，接树莓派 GND 引脚；橙线是信号线，也是我们唯一需要输入控制信号的线，接任何一个 GPIO 引脚。</p>
 <h3 id="3-2-舵机校准测试"><a href="#3-2-舵机校准测试" class="headerlink" title="3.2 舵机校准测试"></a>3.2 舵机校准测试</h3><p>理论上说，在规定范围内，输入信号给多少占空比，必须有个一确定的角度与他对应。在使用之前，我们需要测试一下占空比和角度的对应关系。<br>打开树莓派终端，输入一下命令进入 python 环境：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python</span><br></pre></td></tr></table></figure></p>
-<p>之后，一行一行输入一下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import RPi.GPIO as GPIO</span><br><span class="line">GPIO.setmode(GPIO.BOARD) # 使用BOARD引脚编号方案</span><br><span class="line">tiltPin = 11</span><br><span class="line">GPIO.setup(tiltPin, GPIO.OUT)</span><br><span class="line">tilt = GPIO.PWM(tiltPin, 50) #舵机的信号频率是 50Hz</span><br><span class="line">tilt = start(0) # 初始占空比设为0</span><br></pre></td></tr></table></figure></p>
+<p>之后，一行一行输入一下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import RPi.GPIO as GPIO</span><br><span class="line">GPIO.setmode(GPIO.BOARD) # 使用BOARD引脚编号方案</span><br><span class="line">tiltPin = 11</span><br><span class="line">GPIO.setup(tiltPin, GPIO.OUT)</span><br><span class="line">tilt = GPIO.PWM(tiltPin, 50) #舵机的信号频率是 50Hz</span><br><span class="line">tilt.start(0) # 初始占空比设为0</span><br></pre></td></tr></table></figure></p>
 <p>现在，你可以输入不同的占空比值，观察舵机的运动。让我们从2％开始，看看会发生什么（我们观察舵机从“零位”开始）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tilt.ChangeDutyCycle(2)</span><br></pre></td></tr></table></figure></p>
-<p>我项目的情况是，当我将占空比改为3％时，舵机进入零位。我观察到舵机停留在同一位置，开始以大于3％的占空比移动。所以，3％是我的初始位置（o°）。同样的情况发生在10％，我的舵机超过这个数值，最终达到13％。所以对于这个舵机，最终结果是：<br>0°==&gt;占空比3％<br>90°==&gt;占空比8％<br>180°==&gt;占空比13％<br>完成测试后，必须停止PWM并清理GPIO：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tilt= stop()</span><br><span class="line">GPIO.cleanup()</span><br></pre></td></tr></table></figure></p>
+<p>我项目的情况是，当我将占空比改为3％时，舵机进入零位。我观察到舵机停留在同一位置，开始以大于3％的占空比移动。所以，3％是我的初始位置（o°）。同样的情况发生在10％，我的舵机超过这个数值，最终达到13％。所以对于这个舵机，最终结果是：<br>0°==&gt;占空比3％<br>90°==&gt;占空比8％<br>180°==&gt;占空比13％<br>完成测试后，必须停止PWM并清理GPIO：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tilt.stop()</span><br><span class="line">GPIO.cleanup()</span><br></pre></td></tr></table></figure></p>
 <p>实际测试过程中，你的数据可能有所不同。</p>
 <h2 id="双舵机打造摄像机云台"><a href="#双舵机打造摄像机云台" class="headerlink" title="双舵机打造摄像机云台"></a>双舵机打造摄像机云台</h2><p>摄像机有水平和垂直两个方向需要转动，因此需要两个舵机才能满足要求。</p>
 <p>“平板”舵机将“水平”移动摄像机（“方位角”），而“仰角”舵机将“垂直”移动摄像机（仰角）。</p>
