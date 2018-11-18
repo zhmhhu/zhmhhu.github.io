@@ -194,7 +194,7 @@
             </div>
             <h2 class="post-title">手把手教你打造智能小车（4）-使用传感器自动避障</h2>
             <div class="post-meta">
-                本文总共2710个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共2867个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
@@ -232,6 +232,13 @@
 <h3 id="2-3-使用方法"><a href="#2-3-使用方法" class="headerlink" title="2.3 使用方法"></a>2.3 使用方法</h3><p>我们使用一个 LED 灯来来作为有障碍物时发出的警告。Python代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import RPi.GPIO as GPIO</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">GPIO.setmode(GPIO.BOARD)</span><br><span class="line">GPIO.setwarnings(False)</span><br><span class="line">########红外传感器接口定义#################</span><br><span class="line">GPIO_OUT = 16</span><br><span class="line">led = 37 </span><br><span class="line">#设置引脚为输入和输出</span><br><span class="line">#设置16针脚为输入，接到红外避障传感器模块的out引脚</span><br><span class="line">GPIO.setup(GPIO_OUT,GPIO.IN) </span><br><span class="line">GPIO.setup(led,GPIO.OUT)     </span><br><span class="line"> </span><br><span class="line">def warn():   </span><br><span class="line">	GPIO.output(led,GPIO.HIGH) #亮灯来作为有障碍物时发出的警告</span><br><span class="line">	time.sleep(0.5)</span><br><span class="line">	GPIO.output(led,GPIO.LOW)</span><br><span class="line">	time.sleep(0.5)</span><br><span class="line">		</span><br><span class="line">while True:</span><br><span class="line">	if GPIO.input(GPIO_OUT)==0: #当有障碍物时，传感器输出低电平，所以检测低电平</span><br><span class="line">		warn()</span><br><span class="line">GPIO.cleanup()</span><br></pre></td></tr></table></figure></p>
 <p>保存代码并执行，然后将手挡在传感器前，就会看到 LED 灯一闪一闪的，拿开手时，LED 灯将熄灭。转动传感器上的电位器旋钮，可以发现红外传感器发出警告时，目标的距离会发生变化。选择合适的告警距离，大约 15 cm 就可以了。</p>
 <p>将超声波测距功能和红外避障功能加入到小车转向控制代码中，一个完整的自动避障小车就完成了。详细代码，见 <a href="https://github.com/zhmhhu/myPiCar" target="_blank" rel="noopener">Github</a>。</p>
+<p>系列目录：</p>
+<p><a href="https://zhmhhu.github.io/technology/2018-09-16-step-by-step-building-smart-car-0.html">《手把手教你打造智能小车（0）-写在前面的话》</a></p>
+<p><a href="https://zhmhhu.github.io/technology/2018-09-16-step-by-step-building-smart-car-1.html">《手把手教你打造智能小车（1）-树莓派及其使用配置</a></p>
+<p><a href="https://zhmhhu.github.io/technology/2018-09-23-step-by-step-building-smart-car-2.html">《手把手教你打造智能小车（2）-点亮 LED 灯</a></p>
+<p><a href="https://zhmhhu.github.io/technology/2018-09-23-step-by-step-building-smart-car-3.html">《手把手教你打造智能小车（3）-小车跑起来</a></p>
+<p><a href="https://zhmhhu.github.io/technology/2018-09-23-step-by-step-building-smart-car-4.html">《手把手教你打造智能小车（4）-使用传感器自动避障</a></p>
+<p><a href="https://zhmhhu.github.io/technology/2018-09-24-step-by-step-building-smart-car-5.html">《手把手教你打造智能小车（5）-使用舵机打造摄像机云台</a></p>
 
         </div>
         <div class="post-tool">
