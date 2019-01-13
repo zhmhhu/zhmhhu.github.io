@@ -218,7 +218,7 @@
 <ol start="2">
 <li>ReSpeaker 2 Mics Pi HAT</li>
 </ol>
-<p>ReSpeaker 2 Mics Pi HAT 是专门为树莓派打造的 2 阵列开发板，带 2 Mic 阵列，有声卡，支持外接 3.5mm 音频输出。与 PlayStation Eye 不同的是，它要占用树莓派的GPIO，并且需要自己安装驱动（过程略显复杂，后面会讲）。<br>这里给出<a href="https://s.taobao.com/search?q=respeaker+2-mics+pi+hat&amp;imgfile=&amp;js=1&amp;stats_click=search_radio_all%3A1&amp;initiative_id=staobaoz_20170829&amp;ie=utf8" target="_blank" rel="noopener">链接</a>。找个便宜得买，其实质量都差不多。</p>
+<p>ReSpeaker 2 Mics Pi HAT 是专门为树莓派打造的 2 阵列开发板，带 2 Mic 阵列，有声卡，支持外接 3.5mm 音频输出。与 PlayStation Eye 不同的是，它要占用树莓派的GPIO，并且需要自己安装驱动（过程略显复杂，后面会讲）。<br>这里给出<a href="https://s.taobao.com/search?q=respeaker+2-mics+pi+hat&amp;imgfile=&amp;js=1&amp;stats_click=search_radio_all%3A1&amp;initiative_id=staobaoz_20170829&amp;ie=utf8" target="_blank" rel="noopener">链接</a>。找个便宜的买，其实质量都差不多。</p>
 <p>两种麦克风建议都配备。在我的开发过程中，先是使用了PlayStation Eye，因为配置简单，即插即用；后来使用了 ReSpeaker 2 Mics Pi HAT 开发板，因为要做真正的机器人，不可能在用麦克风时还拖着一根线吧，这个开发板是直接插在树莓派 GPIO 口上的，小巧方便。ReSpeaker 还有 4个麦的 ReSpeaker 4-Mic 和 6 个麦的 ReSpeaker 6-Mic，价格一次地政。这两者我没有试过，如果你不缺钱，可以买来试试，效果应该比 2 个麦的要好。</p>
 <h3 id="唤醒识别"><a href="#唤醒识别" class="headerlink" title="唤醒识别"></a>唤醒识别</h3><p>语音唤醒的常见场景就是用户使用唤醒词（如百度的“小度小度”，亚马逊的“Alex”）将设备激活。<br>实际上设备在通过唤醒词激活之前也是一直在工作的，设备一直在录音，并检查录音的数据中是否包含预设的唤醒词（如“小度小度”、“Alexa”），当检测到有唤醒词，设备便进入唤醒状态。<br>当前对于个人开发者相对友好的免费的唤醒引擎主要有：</p>
 <p>SnowBoy (<a href="https://snowboy.kitt.ai/" target="_blank" rel="noopener">https://snowboy.kitt.ai/</a>)</p>
@@ -277,6 +277,10 @@
 
         <div class="post-nav">
             
+              <div class="post-nav-prev post-nav-item">下一篇：
+                <a href="/coding/2019-01-07-flask-video-streaming-revisited-md.html" >【译】再看 Flask 视频流</a>
+              </div>
+              
               
               <div class="post-nav-next post-nav-item">上一篇：
                 <a href="/technology/2018-11-19-step-by-step-building-smart-robot-0-md.html" >手把手教你打造智能语音机器人（0）-写在前面的话</a>
