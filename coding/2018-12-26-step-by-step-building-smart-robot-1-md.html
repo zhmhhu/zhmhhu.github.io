@@ -194,7 +194,7 @@
             </div>
             <h2 class="post-title">手把手教你打造智能语音机器人（1）-强大的 DuerOS 系统</h2>
             <div class="post-meta">
-                本文总共4594个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+                本文总共4599个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
@@ -214,11 +214,11 @@
 <li>PlayStation Eye</li>
 </ol>
 <p>Playstation Eye 是 PS3 主机上搭配 PS Move 玩体感游戏的，自带麦克风和摄像头，只占用一个USB接口。花一份钱，买两样东西，而且价格竟然只有惊人的26块钱，一顿饭钱，还包邮。至于使用效果呢，总结下来还是可用的。麦克风在没那么嘈杂的环境下，三米以外也能获得不错的拾音效果。摄像头分辨率确实不高，只有640×480，但是帧数比较高，一般使用也足够了。目前，我们还用不到摄像头的功能。这个设备足以满足要求了。 </p>
-<p>这里附上链接，找销量最高的那个就对了，别买贵了。我本人使用的也是这款，下面的配置也会按照这个硬件做示例。</p>
+<p>这里附上<a href="https://s.taobao.com/search?q=Playstation+Eye&amp;imgfile=&amp;commend=all&amp;ssid=s5-e&amp;search_type=item&amp;sourceId=tb.index&amp;spm=a21bo.2017.201856-taobao-item.1&amp;ie=utf8&amp;initiative_id=tbindexz_20170306" target="_blank" rel="noopener">链接</a>，找销量最高的那个就对了，别买贵的。下面的配置也会按照这个硬件做示例。</p>
 <ol start="2">
 <li>ReSpeaker 2 Mics Pi HAT</li>
 </ol>
-<p>ReSpeaker 2 Mics Pi HAT 是专门为树莓派打造的 2 阵列开发板，带 2 Mic 阵列，有声卡，支持外接 3.5mm 音频输出。与 PlayStation Eye 不同的是，它要占用树莓派的GPIO，并且需要自己安装驱动（过程略显复杂，后面会讲）。<br>这里给出链接，</p>
+<p>ReSpeaker 2 Mics Pi HAT 是专门为树莓派打造的 2 阵列开发板，带 2 Mic 阵列，有声卡，支持外接 3.5mm 音频输出。与 PlayStation Eye 不同的是，它要占用树莓派的GPIO，并且需要自己安装驱动（过程略显复杂，后面会讲）。<br>这里给出<a href="https://s.taobao.com/search?q=respeaker+2-mics+pi+hat&amp;imgfile=&amp;js=1&amp;stats_click=search_radio_all%3A1&amp;initiative_id=staobaoz_20170829&amp;ie=utf8" target="_blank" rel="noopener">链接</a>。找个便宜得买，其实质量都差不多。</p>
 <p>两种麦克风建议都配备。在我的开发过程中，先是使用了PlayStation Eye，因为配置简单，即插即用；后来使用了 ReSpeaker 2 Mics Pi HAT 开发板，因为要做真正的机器人，不可能在用麦克风时还拖着一根线吧，这个开发板是直接插在树莓派 GPIO 口上的，小巧方便。ReSpeaker 还有 4个麦的 ReSpeaker 4-Mic 和 6 个麦的 ReSpeaker 6-Mic，价格一次地政。这两者我没有试过，如果你不缺钱，可以买来试试，效果应该比 2 个麦的要好。</p>
 <h3 id="唤醒识别"><a href="#唤醒识别" class="headerlink" title="唤醒识别"></a>唤醒识别</h3><p>语音唤醒的常见场景就是用户使用唤醒词（如百度的“小度小度”，亚马逊的“Alex”）将设备激活。<br>实际上设备在通过唤醒词激活之前也是一直在工作的，设备一直在录音，并检查录音的数据中是否包含预设的唤醒词（如“小度小度”、“Alexa”），当检测到有唤醒词，设备便进入唤醒状态。<br>当前对于个人开发者相对友好的免费的唤醒引擎主要有：</p>
 <p>SnowBoy (<a href="https://snowboy.kitt.ai/" target="_blank" rel="noopener">https://snowboy.kitt.ai/</a>)</p>
