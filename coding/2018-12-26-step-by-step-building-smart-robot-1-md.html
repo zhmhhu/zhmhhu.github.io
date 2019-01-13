@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://zhmhhu.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://zhmhhu.github.io">
+<meta name="author" content="zhmhhu">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+<!-- 用户自定义的样式 -->
+<link rel="stylesheet" href="/css/myStyle.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>手把手教你打造智能语音机器人（1）-强大的 dueros 系统 - 赵小生的博客</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="博">博</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">赵小生的博客</h1>
+        <h3 class="cover-siteTitle">传播科技，关注人文</h3>
+        <p class="cover-siteDesc">写更少的代码，过更好的生活</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/zhmhhu" target="_blank" title="weibo" ref="friend">
+                    <i class="fa fa-weibo"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-twitter">
+                <a href="https://twitter.com/zhmhhu" target="_blank" title="twitter" ref="friend">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/zhmhhu" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/coding" data-name="代码">代码</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/technology" data-name="科技">科技</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/design" data-name="设计">设计</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/talk" data-name="杂谈">杂谈</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/resource" data-name="资源">资源</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div><img width="100%" src="https://ws1.sinaimg.cn/large/006tNc79ly1fz58q10cf5j30a7097q3i.jpg" alt="photos"/></div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://github.com/zhmhhu" target="_blank">
+                    <img width="48" src="/images/userpic.jpg" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
+                    <span title="最后编辑于2018-12-26">2018-12-26</span>
+                </p>
+                <p>不会讲故事的程序员不是好的水利工程师</p>
+            </div>
+            <h2 class="post-title">手把手教你打造智能语音机器人（1）-强大的 DuerOS 系统</h2>
+            <div class="post-meta">
+                本文总共4594个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2 id="DuerOS-是什么"><a href="#DuerOS-是什么" class="headerlink" title="DuerOS 是什么"></a>DuerOS 是什么</h2><p>DuerOS是百度研发的一款对话式人工智能操作系统，是百度全球领先人工智能技术的重要应用之一，借助百度的信息与服务构成的巨大生态，DuerOS拥有海量数据，能通过自然语言完成对硬件的操作与对话交流，为用户提供完整的服务链条。作为一款开放式的操作系统， DuerOS通过云端大脑时刻进行自动学习让机器具备人类的语言能力。</p>
+<p>DuerOS广泛支持手机、电视、音箱、汽车、机器人等多种硬件设备，搭载DuerOS系统能力的硬件设备，可以轻松打造对话式人工智能系统，利用百度提供的语音识别、图像识别、自然语言处理、用户画像等世界领先的技术能力，极大降低了使用人工智能对话系统的门槛。</p>
+<p>和 DuerOS 类似的还有 Amazon Alexa 和 Google Assistant，这两者由于是美国人研发的，对中文语音的识别并不是很好，特别是 Google Assistant 用到的服务在中国境内被屏蔽了，想要使用还得翻墙，非常麻烦。所以这里我们首选百度的 DuerOS 。</p>
+<h2 id="硬件准备"><a href="#硬件准备" class="headerlink" title="硬件准备"></a>硬件准备</h2><p>一个完整的智能语音系统主要由如下几个核心部分组成：</p>
+<p>麦克风阵列</p>
+<p>唤醒识别</p>
+<p>语音识别（ASR）</p>
+<p>自然语言处理（NLP/NLU）</p>
+<p>内容召回</p>
+<h3 id="麦克风阵列"><a href="#麦克风阵列" class="headerlink" title="麦克风阵列"></a>麦克风阵列</h3><p>我们在日常生活中常见的麦克风大多是单麦克风，但是单麦克风对于远场拾音效果很不好。比如，手机上一般使用单麦克风，打电话时手机需要放在半米的范围之内，对方才能听清说话的声音。如果想要在 3~5 米的范围之内，也能够捕获声音，就需要麦克风阵列。</p>
+<p>麦克风阵列在硬件上可以简单的理解成，一个麦克风阵列由多个麦克风组成。麦克风阵列的远场拾音效果很好，另外，麦克风阵列能够获取声源的角度信息，也就是说能够辨别声音的来源方位。有了声音的来源方位信息，我们就可以在开发语音交互系统时，扩展新的功能。</p>
+<p>这里推荐两类比较常用的麦克风：</p>
+<ol>
+<li>PlayStation Eye</li>
+</ol>
+<p>Playstation Eye 是 PS3 主机上搭配 PS Move 玩体感游戏的，自带麦克风和摄像头，只占用一个USB接口。花一份钱，买两样东西，而且价格竟然只有惊人的26块钱，一顿饭钱，还包邮。至于使用效果呢，总结下来还是可用的。麦克风在没那么嘈杂的环境下，三米以外也能获得不错的拾音效果。摄像头分辨率确实不高，只有640×480，但是帧数比较高，一般使用也足够了。目前，我们还用不到摄像头的功能。这个设备足以满足要求了。 </p>
+<p>这里附上链接，找销量最高的那个就对了，别买贵了。我本人使用的也是这款，下面的配置也会按照这个硬件做示例。</p>
+<ol start="2">
+<li>ReSpeaker 2 Mics Pi HAT</li>
+</ol>
+<p>ReSpeaker 2 Mics Pi HAT 是专门为树莓派打造的 2 阵列开发板，带 2 Mic 阵列，有声卡，支持外接 3.5mm 音频输出。与 PlayStation Eye 不同的是，它要占用树莓派的GPIO，并且需要自己安装驱动（过程略显复杂，后面会讲）。<br>这里给出链接，</p>
+<p>两种麦克风建议都配备。在我的开发过程中，先是使用了PlayStation Eye，因为配置简单，即插即用；后来使用了 ReSpeaker 2 Mics Pi HAT 开发板，因为要做真正的机器人，不可能在用麦克风时还拖着一根线吧，这个开发板是直接插在树莓派 GPIO 口上的，小巧方便。ReSpeaker 还有 4个麦的 ReSpeaker 4-Mic 和 6 个麦的 ReSpeaker 6-Mic，价格一次地政。这两者我没有试过，如果你不缺钱，可以买来试试，效果应该比 2 个麦的要好。</p>
+<h3 id="唤醒识别"><a href="#唤醒识别" class="headerlink" title="唤醒识别"></a>唤醒识别</h3><p>语音唤醒的常见场景就是用户使用唤醒词（如百度的“小度小度”，亚马逊的“Alex”）将设备激活。<br>实际上设备在通过唤醒词激活之前也是一直在工作的，设备一直在录音，并检查录音的数据中是否包含预设的唤醒词（如“小度小度”、“Alexa”），当检测到有唤醒词，设备便进入唤醒状态。<br>当前对于个人开发者相对友好的免费的唤醒引擎主要有：</p>
+<p>SnowBoy (<a href="https://snowboy.kitt.ai/" target="_blank" rel="noopener">https://snowboy.kitt.ai/</a>)</p>
+<p>Pocketsphinx (<a href="https://cmusphinx.github.io/wiki/tutorialpocketsphinx/" target="_blank" rel="noopener">https://cmusphinx.github.io/wiki/tutorialpocketsphinx/</a>)</p>
+<p>Sensory (<a href="http://www.sensory.com" target="_blank" rel="noopener">http://www.sensory.com</a>)</p>
+<p>目前，百度已全资收购了KITTAI（SnowBoy是KITTAI旗下产品），建议开发者直接使用SnowBoy作为唤醒引擎，同时，SnowBoy的唤醒词训练，及唤醒引擎的集成使用也很简洁方便。SnowBoy 支持 更换唤醒词，就比如我这台智能机器人的唤醒词“小白小白”，就是我自己配置的。根据教程，你可以更换自己喜欢的唤醒词。</p>
+<h3 id="语音识别"><a href="#语音识别" class="headerlink" title="语音识别"></a>语音识别</h3><p>语音识别（ASR）简单的说就是讲语音转化为文本，目前几乎所有的语音系统都是先将语音转化为文本，然后再基于文本进行后续的语义理解和处理的。</p>
+<p>在 DuerOS 中，系统将采集到的语音信息不断地发送到百度的云服务后台，由后台对语音进行解析和识别，再进行后续的处理。</p>
+<h3 id="自然语言处理"><a href="#自然语言处理" class="headerlink" title="自然语言处理"></a>自然语言处理</h3><p>有了语言识别（ASR）获取的文本信息，后面就进入了自然语言处理单元了，可以说这个步骤是最接近我们概念上理解的人工智能了。这个部分会从输入文本中获取用户的意图和对应的关键信息。举个例子，对应用户输入请求：“我想听周杰伦的歌”，NLU会将请求拆解成如下的结构化结果：</p>
+<p>意图：听歌</p>
+<p>词槽：周杰伦</p>
+<p>有了NLU的处理结果，就可以获取用户请求的结果了。</p>
+<p>用户可设置自定义控制指令，系统就会根据用户的设定，识别控制指令并下发相对应的指令编码，便于用户后续处理。比如，用户输入请求“让机器人向左转弯”。系统能够识别“左”和“转”两个关键信息，下发指令编码，接着用户在编写代码识别指令编码，使用 GPIO 控制电机运转。</p>
+<p>内容召回<br>这部分是对话式语音系统的重要内容，背后是支撑对话的强大数据库和信息源。</p>
+<p>假设你有两个资源库，其中，一个是电影库，一个是歌曲库。当接收NLU的处理结果后，从意图（听歌）上，你可以判别用户希望从歌曲库中获取资源，从词槽（周杰伦）可以判断用户想听歌曲的类别。有了意图和词槽就能从资源库中检索到用户期望的结果，并将结果按请求的路径返回。</p>
+<h2 id="在树莓派上运行-DuerOS"><a href="#在树莓派上运行-DuerOS" class="headerlink" title="在树莓派上运行 DuerOS"></a>在树莓派上运行 DuerOS</h2><p>在树莓派上运行 DuerOS 非常简单，百度已经提供了官方的教程，教你怎么使用。点击<a href="https://developer.baidu.com/forum/topic/show/244796?pageNo=1" target="_blank" rel="noopener">此处</a>查看</p>
+<h3 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h3><p>如教程所说，由于树莓派官方镜像的 OpenSSL 并不支持 Http2 ALPN，因此我们需要刷 DuerOS 的树莓派镜像安装包，并在之后再次安装 OpenSSL，才能够正常使用 DuerOS。点击<a href="https://dueros.bj.bcebos.com/DevkitPersonalImg%2FDuerOS_For_Raspberry_v0.8.1_20171221.img.gz?authorization=bce-auth-v1%2Ff04711cb669b4f6f9c57cbe33dbcd609%2F2017-12-21T08%3A58%3A38Z%2F-1%2Fhost%2Fd263e7ba66ef6213d75cb02f5e400aa6ac7e029d5409bd16f31d353b37df2d82" target="_blank" rel="noopener">此处</a>下载 DuderOS 专用的树莓派镜像。这一镜像也可以在<a href="http://open.duer.baidu.com/doc/device-devkit/intro_markdown" target="_blank" rel="noopener">“DuerOS智能硬件开发套件产品介绍”</a>中找到。之后，按照我们在《手把手教你打造智能小车（1）-树莓派及其使用配置》学过的方法刷机、配置和启动树莓派。</p>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><p>首先连接好麦克风和音箱（麦克风使用PlayStation Eye，连接 USB 接口，音箱接树莓派3.5mm耳机孔，没有音箱就用耳机代替），进行以下操作。</p>
+<p>停止现有小度功能，因为会占用MIC资源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl disable duer</span><br><span class="line">sudo systemctl stop duer</span><br></pre></td></tr></table></figure></p>
+<p>安装依赖包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install python-dateutil</span><br><span class="line">sudo apt-get install gir1.2-gstreamer-1.0</span><br><span class="line">sudo apt-get install python-pyaudio</span><br><span class="line">sudo apt-get install libatlas-base-dev</span><br><span class="line">sudo apt-get install python-dev     </span><br><span class="line">sudo pip install tornado</span><br><span class="line">sudo pip install hyper</span><br></pre></td></tr></table></figure></p>
+<p>hyper库用来支持http2.0 client, pyaudio用来支持录音，tornado用来完成oauth认证。</p>
+<p>下载编译好的openssl和Python安装包，并进行安装, 需要更新openssl才能支持python sdk的使用。</p>
+<p><em>从如下地址下载openssl安装包</em>(链接：<a href="https://eyun.baidu.com/s/3jJmdsbW" target="_blank" rel="noopener">https://eyun.baidu.com/s/3jJmdsbW</a> 密码：EyA4)<br><em>从如下地址下载python2.7.14安装包</em>(链接：<a href="https://eyun.baidu.com/s/3c3SSVao" target="_blank" rel="noopener">https://eyun.baidu.com/s/3c3SSVao</a> 密码：0sDM)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf openssl1.1.tar.gz -C /usr</span><br><span class="line">sudo tar -zxvf python2.7.14.tar.gz -C /usr/local/</span><br><span class="line">sudo rm -rf /usr/bin/python</span><br><span class="line">sudo ln -s /usr/local/python2.7.14/bin/python /usr/bin/python</span><br></pre></td></tr></table></figure>
+<p>下载 Python SDK 和参考示例代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/MyDuerOS/DuerOS-Python-Client.git</span><br><span class="line">cd DuerOS-Python-Client</span><br><span class="line">git checkout raspberry-dev</span><br></pre></td></tr></table></figure></p>
+<p>注意，上面代码有一条命令 <code>git checkout raspberry-dev</code> 非常重要，这表示切换到 raspberry-dev 分支，因为这个 Python SDK 的 master是针对 Linux 系统的，不切换到与树莓派相对应的分支可能会导致这个 SDK 无法使用。</p>
+<h3 id="运行和测试"><a href="#运行和测试" class="headerlink" title="运行和测试"></a>运行和测试</h3><p>授权<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./auth.sh</span><br></pre></td></tr></table></figure></p>
+<p>直接运行使用默认的 client_id 和 client_secret，开发者可以替换成自己在 <a href="https://dueros.baidu.com/open" target="_blank" rel="noopener">DuerOS 开放平台</a>申请的 client_id 和 client_secret，进而实现在控制台自定义的配置属性。</p>
+<p>之后，登录<a href="http://developer.baidu.com/console#app/project" target="_blank" rel="noopener">百度开发者中心</a><br>在开放平台中“安全设置”的“授权回调页”，设置成<br><a href="http://127.0.0.1:3000/authresponse" target="_blank" rel="noopener">http://127.0.0.1:3000/authresponse</a></p>
+<p>授权回调页设置<br><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fz56npbrk2j31ek0qymy9.jpg" alt=""></p>
+<p>运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./wakeup_trigger_start.sh</span><br></pre></td></tr></table></figure></p>
+<p>说出唤醒词(默认是“小度小度”)，识别之后，会听到音箱发出“叮”的一声，之后说出指令，比如“今天天气怎么样？”。系统会播报今天的天气。</p>
+<p>下面这个命令是使用enter按键触发识别<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./enter_trigger_start.sh</span><br></pre></td></tr></table></figure></p>
+<p>在控制台按下 enter 键即触发唤醒，无需使用唤醒词。</p>
+<p><a href="https://zhmhhu.github.io/technology/2018-11-19-step-by-step-building-smart-robot-0-md.html">《手把手教你打造智能语音机器人（0）-写在前面的话 </a></p>
+<p><a href="https://zhmhhu.github.io/technology/2018-12-26-step-by-step-building-smart-robot-1-md.html">《手把手教你打造智能语音机器人（1）-强大的 DuerOS 系统》</a></p>
+<p>《手把手教你打造智能语音机器人（2）-配置属于自己的语音交互机器人》</p>
+<p>《手把手教你打造智能语音机器人（3）-用语音控制机器人》</p>
+<p>《手把手教你打造智能语音机器人（4）-搭建目标检测系统（初识 YOLO 算法）》</p>
+<p>《手把手教你打造智能语音机器人（5）-搭建目标检测系统（训练自己的目标检测模型）》</p>
+<p>《手把手教你打造智能语音机器人（6）-让机器人拥有睿智的眼睛（识别目标并自动追踪）》</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/javascript/">javascript</a>
+            
+        </div>
+        
+
+        <div class="post-nav">
+            
+              
+              <div class="post-nav-next post-nav-item">上一篇：
+                <a href="/technology/2018-11-19-step-by-step-building-smart-robot-0-md.html" >手把手教你打造智能语音机器人（0）-写在前面的话</a>
+              </div>
+            
+        </div>
+    </article>
+    
+    <p>本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！评论需科学上网才可查看！</p>
+    
+    
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    var disqus_config = function () {
+        this.page.url = 'http://zhmhhu.github.io/coding/2018-12-26-step-by-step-building-smart-robot-1-md.html';
+        this.page.identifier = 'coding/2018-12-26-step-by-step-building-smart-robot-1-md.html';
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');
+        s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+        Disqus.</a></noscript>
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about"  title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="help" >急救中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        
+<!-- Tencent Analytics -->
+<script type="text/javascript" src="//tajs.qq.com/stats?sId=65912398" charset="UTF-8"></script>
+
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '12/24/2017',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>
