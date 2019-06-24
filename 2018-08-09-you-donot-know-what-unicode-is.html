@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://zhmhhu.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://zhmhhu.github.io">
+<meta name="author" content="zhmhhu">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+<!-- 用户自定义的样式 -->
+<link rel="stylesheet" href="/css/myStyle.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>你所不知道的unicode字符编码 - 赵小生的博客</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="作为一个严谨求实的开发者，如果不从源头上彻底理解乱码产生的机制，并由此寻求解决问题的根本路径，那么永远不能从码农的阴影中摆脱出来。">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="博">博</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">赵小生的博客</h1>
+        <h3 class="cover-siteTitle">传播科技，关注人文</h3>
+        <p class="cover-siteDesc">写更少的代码，过更好的生活</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/zhmhhu" target="_blank" title="weibo" ref="friend">
+                    <i class="fa fa-weibo"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-twitter">
+                <a href="https://twitter.com/zhmhhu" target="_blank" title="twitter" ref="friend">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/zhmhhu" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/coding" data-name="代码">代码</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/technology" data-name="科技">科技</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/humanity" data-name="人文">人文</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/talk" data-name="杂谈">杂谈</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/resource" data-name="资源">资源</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div><img width="100%" src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu39ubh7gkj30r00hlgu8.jpg" alt="photos"/></div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://github.com/zhmhhu" target="_blank">
+                    <img width="48" src="/images/userpic.jpg" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
+                    <span title="最后编辑于2018-08-09">2018-08-09</span>
+                </p>
+                <p>不会讲故事的程序员不是好的水利工程师</p>
+            </div>
+            <h2 class="post-title">你所不知道的unicode字符编码</h2>
+            <div class="post-meta">
+                本文总共4045个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>在编程的过程当中，常常会遇到莫名其妙的乱码问题。很多人选择出了问题直接在网上找答案，把别人的例子照搬过来，这是快速解决问题的一个好办法。然而，作为一个严谨求实的开发者，如果不从源头上彻底理解乱码产生的机制，并由此寻求解决问题的根本路径，那么永远不能从码农的阴影中摆脱出来。下面就来一起了解一下计算机编码问题的来龙去脉。</p>
+<h2 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h2><p>众所周知，计算机中的所有数据，不论是文字、图片、视频、还是音频文件，本质上最终都是按照类似 01010101 的二进制形式存储的。然而，计算机中的字符，并不能完全以这种方式来表示。由于计算机最初是由美国人发明的，因而最初的计算机编码使用的也是美国人的标准，即ASCII( American Standard Code for Information Interchange，美国信息交换标准代码)。</p>
+<p>ASCII码一共规定了128个字符的编码，比如大写的字母A是65（二进制01000001），符号@的编码是64（二进制01000000）。这128个符号中， 0～31及127(共33个)是控制字符或通信字符，32–126 分配给了能在键盘上找到并且能打印出来的字符。所有ASCII编码表示的内容，只占用了一个字节的后面7位，最高位统一规定为0。<br><img src="https://ws4.sinaimg.cn/large/0069RVTdgy1fu39ubh7gkj30r00hlgu8.jpg" alt=""></p>
+<p>后来为了能够表示欧洲地区除了英文字母以外的其它字母，出现了扩展的ASCII编码。 扩展的ASCII包含原有的128个字符，又增加了128个字符，总共是256个。编码时最高位为1，这样就可以与ASCII码完全兼容。可以表示诸如音标æ（编码145，二进制10010001）以及法语中的字母é（编码为130，二进制10000010）等字符。<br><img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fu39vhmfx6j30h60gowtl.jpg" alt=""></p>
+<p>这个编码能表示音标和欧洲大多数非英语系字母，但是它并不是国际标准，在不同的国家， 128 到 255对应的字符并不完全相同，这就产生了各种不同的扩展ASCII编码。比如 ISO8859-1 字符集，也就是 Latin-1，加入了西欧常用字符，包括德法两国的字母。ISO8859-2 字符集，也称为 Latin-2，收集了东欧字符。 ISO8859-3 字符集，也称为 Latin-3，收集了南欧字符，等等。<br>这样的编码方式够吗？显然不够，比如汉字，就无法用ASCII表示。扩展的ASCII 也远远不够。</p>
+<h2 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h2><p>中国人为了能够正常使用计算机这一伟大方明，做出了多方面的努力。GB2312 就是这一努力的成果， 该标准于1980年发布，1981年5月1日开始实施。它标志着我国在使用电子计算机方面迈出了重要的一步。GB2312 编码共收录了6763个汉字，同时还兼容 ASCII。这一字符编码基本满足了汉字的计算机处理需要，它所收录的汉字已经覆盖中国大陆 99.75% 的使用频率，然而对一些古汉语和繁体字 GB2312 没法处理。</p>
+<p>1995 年发布的GBK 的编码，是对 GB2312 的补充和扩展。GBK 不仅收录了 GB2312 中的全部汉字、非汉字符号，同时还收录了日韩语中出现的汉字，如韩国著名围棋手李世乭中的乭 GBK 编码是 0x8168(0x表示16进制)。<a href="https://www.qqxiuzi.cn/zh/hanzi-gbk-bianma.php" target="_blank" rel="noopener">这里</a>可以查询汉字对应的 GBK 编码。</p>
+<p>GBK 编码一般用两个字节表示一个字符，如果是英文字母，则使用一个字符，与ASCII编码相同，因此，GBK 也是兼容 ASCII 编码的，但并不与任何扩展的ASCII编码兼容。这可以从它的编码序列看出来。</p>
+<p>GBK 采用双字节表示，总体编码范围为 0x8140-0xFEFE（1000000101000000-1111111011111110），首字节在 0x81-0xFE 之间，尾字节在 0x40-0xFE之间。可以看出首字节最高位都为1，这样一来，如果尾字节后的字节最高位为0，那么就可以解析为一个ASCII编码字符，否则就是一个连续的二字节字符。</p>
+<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>世界上存在着多种语言，有没有一种编码方式能够囊括所有语言中的字符呢？答案是有。Unicode编码正是为了满足这种需求制定的，它规定了每一个字符所对应的唯一的二进制代码，称之为码点（code point）。Unicode是一个很大的集合，目前的规模可以容纳100多万个符号。</p>
+<p>这么多符号，Unicode不是一次性定义的，而是分区定义。每个区可以存放 65536个（ 2<sup>16</sup> ）字符，称为一个平面（plane）。目前，一共有17个平面。</p>
+<p>最前面的65536个字符位，称为基本平面（缩写BMP），它的码点范围是从0一直到216-1，写成16进制就是从U+0000到U+FFFF。所有最常见的字符都放在这个平面，这是Unicode最先定义和公布的一个平面。</p>
+<p>剩下的字符都放在辅助平面（缩写SMP），码点范围从U+010000一直到U+10FFFF。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Plane 0 0000–FFFF 基础多语言平面（Basic Multilingual Plane）</span><br><span class="line">Plane 1 0000–1FFFF 辅助多语言平面 (Supplementary Multilingual Plane)</span><br><span class="line">Plane 2 0000–1FFFF 辅助表意文字平面 (Supplementary Ideographic Plane)</span><br><span class="line">Plane 3-13 30000–DFFFF 未分配(unassigned)</span><br><span class="line">Plane 14  E0000–EFFFF 辅助多用途平面(Supplement­ary Special-purpose Plane)</span><br><span class="line">Plane 15-16 F0000–10FFFF 辅助私有用户区平面 (Supplement­ary Private Use Areaplanes)</span><br></pre></td></tr></table></figure>
+<p>每个符号的编码都不一样，这么多的字符，想要以二进制形式表示，就需要比较多的字节才能够一一对应。标准的 Unicode(也就是第一个平面，BMP)采用4个字节表示一个字符串。比如，U+0639 表示阿拉伯字母 Ain，U+0041 表示英语的大写字母 A，U+4E6D 表示汉字”乭 “。显然，Unicode 和 GBK 是不兼容的。访问 unicode.org 可以查询具体的符号对应表。</p>
+<p>对于 Unicode 存在一些误解，<strong>它仅仅只是一个字符集，规定了符号对应的二进制代码，至于这个二进制代码如何存储则没有任何规定</strong>。它的想法很简单，就是为每个字符规定一个用来表示该字符的数字，仅此而已。而 UTF-8 是 Unicode 的一种实现方式，它规定了使用 Unicode 编码的字符如何存储和传输。</p>
+<h2 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h2><p>使用4个字节表示一个字符的方法显然不够科学，因为很多英文字母只需要一个字节就可以表示了，偏要用四个字节表示就会造成很大的浪费。于是就出现了UTF-8 编码。</p>
+<p>Unicode 只是规定了字符如何编码，并没有规定如何存储和传输。 UTF-8编码就是Unicode编码的一种实现方式，它规定可以使用1~4个字节表示一个字符，根据所要表现的字符不同而变化字节长度，英文字母就用1个字节表示，汉字就用2-3个字节表示。</p>
+<p>那么问题来了，由于计算机中的字符串是连续的 0101 的编码，如何既能够表示一个字符在 Unicode 编码表中的码点，又能够让计算机明白这个连续编码串中的一个字节就是一个英文字母，而不与他前面的编码串构成两个或三个字节表示的字符。UTF-8 的编码的设计者巧妙的解决了这个问题。<br>英文字符这些原本就可以用 ASCII 码表示的字符用 UTF-8 表示时就只需要一个字节的空间，和 ASCII 是一样的。对于多字节（n个字节）的字符，第一个字节的前 n 为都设为 1，第 n+1 位设为 0，后面字节的前两位都设为10。剩下的二进制位全部用该字符的 Unicode 码填充。</p>
+<table>
+<thead>
+<tr>
+<th>Unicode符号范围</th>
+<th>UTF-8编码方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(十六进制)</td>
+<td>（二进制）</td>
+</tr>
+<tr>
+<td>0000 0000~0000 007F</td>
+<td>0xxxxxxx</td>
+</tr>
+<tr>
+<td>0000 0080~0000 07FF</td>
+<td>110xxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>0000 0800~0000 FFFF</td>
+<td>1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>0001 0000~0010 FFFF</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</tbody>
+</table>
+<p>这样的编码方式很好理解，如果一个字节当中第一位是 0，那么这个字节就对应着一个字符，如果第一位是 1，那么看他后面连续有多少个 1，就表示这个字符占用了多少个字节。</p>
+<p>例如，“我”的Unicode码点是0x6211，二进制 110001000010001，落在第三行的范围内（0000 0800~0000 FFFF），因此”我”需要三个字节，格式是”1110xxxx 10xxxxxx 10xxxxxx”。然后，从”我”的最后一个二进制位开始，依次从后向前填入格式中的x，多出的位补0。这样就得到了”我”的UTF-8编码是”11100110 10001000 10010001 “，转换成十六进制就是E68891，这才是最终存储在计算机中的二进制编码。</p>
+<p>这里指出一个误区，网络上有很多在线 UTF-8 编码转换工具，声称可以把汉字转换成 UTF-8 编码，其实大多数工具只是把汉字转换成了与之对应的 Unicode 码点，并不是真正在存储和传输过程中的 UTF-8 编码。<a href="http://www.mytju.com/classcode/tools/encode_utf8.asp" target="_blank" rel="noopener">这里</a>可以查询汉字对应的 UTF-8 编码和 Unicode 编码，可以看出这两者是不同的。</p>
+<p>除了 UTF-8 之外，Unicode 的实现方式还有 UTF-16 ，UTF-32 。 UTF-16 使用2~4个字节表示一个字符，UTF-32 则使用标准的4个字节表示一个字符，与其Unicode码点一一对应。无论采用哪种表现形式，同一字符所对应的 Unicode 码点都是一样的，只不过在存储和传输的时候，把码点做了不同的转换。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/website/">website</a>
+            
+        </div>
+        
+
+        <div class="post-nav">
+            
+              <div class="post-nav-prev post-nav-item">下一篇：
+                <a href="/2018-08-09-unicode-in-python.html" >python语言中的字符编码问题</a>
+              </div>
+              
+              
+              <div class="post-nav-next post-nav-item">上一篇：
+                <a href="/2018-07-21-css-layout-3-float-property.html" >CSS 布局（3）——float属性</a>
+              </div>
+            
+        </div>
+    </article>
+    
+    <p>本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    var disqus_config = function () {
+        this.page.url = 'http://zhmhhu.github.io/2018-08-09-you-donot-know-what-unicode-is.html';
+        this.page.identifier = '2018-08-09-you-donot-know-what-unicode-is.html';
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');
+        s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+        Disqus.</a></noscript>
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about"  title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="help" >急救中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        
+<!-- Tencent Analytics -->
+<script type="text/javascript" src="//tajs.qq.com/stats?sId=65912398" charset="UTF-8"></script>
+
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '12/24/2017',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>

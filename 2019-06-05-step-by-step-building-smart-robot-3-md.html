@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://zhmhhu.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://zhmhhu.github.io">
+<meta name="author" content="zhmhhu">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+<!-- 用户自定义的样式 -->
+<link rel="stylesheet" href="/css/myStyle.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>手把手教你打造智能语音机器人（3）-用语音控制机器人 - 赵小生的博客</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="博">博</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">赵小生的博客</h1>
+        <h3 class="cover-siteTitle">传播科技，关注人文</h3>
+        <p class="cover-siteDesc">写更少的代码，过更好的生活</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/zhmhhu" target="_blank" title="weibo" ref="friend">
+                    <i class="fa fa-weibo"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-twitter">
+                <a href="https://twitter.com/zhmhhu" target="_blank" title="twitter" ref="friend">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/zhmhhu" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/coding" data-name="代码">代码</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/technology" data-name="科技">科技</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/humanity" data-name="人文">人文</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/talk" data-name="杂谈">杂谈</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/resource" data-name="资源">资源</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div><img width="100%" src="https://ws3.sinaimg.cn/large/006tNc79ly1g4bdplbp6cj30oh0drdgl.jpg" alt="photos"/></div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://github.com/zhmhhu" target="_blank">
+                    <img width="48" src="/images/userpic.jpg" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
+                    <span title="最后编辑于2019-06-05">2019-06-05</span>
+                </p>
+                <p>不会讲故事的程序员不是好的水利工程师</p>
+            </div>
+            <h2 class="post-title">手把手教你打造智能语音机器人（3）-用语音控制机器人</h2>
+            <div class="post-meta">
+                本文总共4390个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2 id="增加语音控制模块"><a href="#增加语音控制模块" class="headerlink" title="增加语音控制模块"></a>增加语音控制模块</h2><p>我们先在 DuerOS-Python-Client/sdk/interface 目录下新建模块 wifirobots.py</p>
+<p>此模块提供智能机器人的基本操作，包括前进后退、手臂动作等等。</p>
+<p>实现定义好 GPIO 引脚,并接好线路。在接口不够的情况下，可使用面包板。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line">class robots(object):</span><br><span class="line"></span><br><span class="line">    def __init__(self,dueros, player):</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        类初始化</span><br><span class="line">        :param dueros:DuerOS核心模块实例</span><br><span class="line">        :param player: 播放器实例（平台相关）</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        self.namespace = &apos;ai.dueros.device_interface.thirdparty.robot.xiaobai&apos;</span><br><span class="line">        self.dueros = dueros</span><br><span class="line">        self.token = &apos;&apos;</span><br><span class="line">        self.state = &apos;IDLE&apos;</span><br><span class="line"></span><br><span class="line">        self.player = player</span><br><span class="line">        self.player.add_callback(&apos;eos&apos;, self.__playback_finished)</span><br><span class="line">        self.player.add_callback(&apos;error&apos;, self.__playback_failed)</span><br><span class="line"></span><br><span class="line">        print &apos;....WIFIROBOTS START!!!...&apos;</span><br><span class="line"></span><br><span class="line">        #######################################</span><br><span class="line">        #############信号引脚定义##############</span><br><span class="line">        #######################################</span><br><span class="line">        GPIO.setmode(GPIO.BOARD)</span><br><span class="line"></span><br><span class="line">        ########电机驱动接口定义#################</span><br><span class="line">        ENA = 29  # //L298使能A</span><br><span class="line">        ENB = 31  # //L298使能B</span><br><span class="line">        IN1 = 7  # //电机接口1</span><br><span class="line">        IN2 = 16  # //电机接口2</span><br><span class="line">        IN3 = 13  # //电机接口3</span><br><span class="line">        IN4 = 15  # //电机接口4</span><br><span class="line"></span><br><span class="line">        ########舵机接口定义#################</span><br><span class="line">        S_Hand_L = 18</span><br><span class="line">        S_Hand_R = 22</span><br><span class="line">        S_Ear_L = 37</span><br><span class="line">        S_Ear_R = 36</span><br><span class="line"></span><br><span class="line">        ########超声波接口定义#################</span><br><span class="line">        ECHO = 32  # 超声波接收脚位</span><br><span class="line">        TRIG = 31  # 超声波发射脚位</span><br><span class="line"></span><br><span class="line">        #######################################</span><br><span class="line">        #########管脚类型设置及初始化##########</span><br><span class="line">        #######################################</span><br><span class="line">        GPIO.setwarnings(False)</span><br><span class="line"></span><br><span class="line">        #########电机初始化为LOW##########</span><br><span class="line">        GPIO.setup(ENA, GPIO.OUT, initial=GPIO.LOW)</span><br><span class="line">        ENA_pwm = GPIO.PWM(ENA, 1000)</span><br><span class="line">        ENA_pwm.start(0)</span><br><span class="line">        ENA_pwm.ChangeDutyCycle(100)</span><br><span class="line">        GPIO.setup(IN1, GPIO.OUT, initial=GPIO.LOW)</span><br><span class="line">        GPIO.setup(IN2, GPIO.OUT, initial=GPIO.LOW)</span><br><span class="line">        GPIO.setup(ENB, GPIO.OUT, initial=GPIO.LOW)</span><br><span class="line">        ENB_pwm = GPIO.PWM(ENB, 1000)</span><br><span class="line">        ENB_pwm.start(0)</span><br><span class="line">        ENB_pwm.ChangeDutyCycle(100)</span><br><span class="line">        GPIO.setup(IN3, GPIO.OUT, initial=GPIO.LOW)</span><br><span class="line">        GPIO.setup(IN4, GPIO.OUT, initial=GPIO.LOW)</span><br><span class="line"></span><br><span class="line">        #########舵机初始化##########</span><br><span class="line">        GPIO.setup(S_Hand_L, GPIO.OUT)</span><br><span class="line">        GPIO.setup(S_Hand_R, GPIO.OUT)</span><br><span class="line">        GPIO.setup(S_Ear_L, GPIO.OUT)</span><br><span class="line">        GPIO.setup(S_Ear_R, GPIO.OUT)</span><br><span class="line"></span><br><span class="line">        ##########超声波模块管脚类型设置#########</span><br><span class="line">        GPIO.setup(TRIG, GPIO.OUT, initial=GPIO.LOW)  # 超声波模块发射端管脚设置trig</span><br><span class="line">        GPIO.setup(ECHO, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # 超声波模块接收端管脚设置echo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ##########机器人方向控制###########################</span><br><span class="line">    def Motor_Forward(self):</span><br><span class="line">        print &apos;motor forward&apos;</span><br><span class="line">        GPIO.output(self.ENA, True)</span><br><span class="line">        GPIO.output(self.ENB, True)</span><br><span class="line">        GPIO.output(self.IN1, True)</span><br><span class="line">        GPIO.output(self.IN2, False)</span><br><span class="line">        GPIO.output(self.IN3, True)</span><br><span class="line">        GPIO.output(self.IN4, False)</span><br><span class="line"></span><br><span class="line">        shutil.copy(&quot;/home/pi/DuerOS-Python-Client/app/resources/forward.mp3&quot;,</span><br><span class="line">                    &quot;/home/pi/DuerOS-Python-Client/temp.mp3&quot;)</span><br><span class="line">        print &quot;语音反馈&quot;</span><br><span class="line">        self.player.play(&apos;file://&#123;&#125;&apos;.format(&apos;/home/pi/DuerOS-Python-Client/temp.mp3&apos;))</span><br><span class="line">        os.remove(&quot;temp.mp3&quot;)</span><br><span class="line"></span><br><span class="line">        # time.sleep(2)</span><br><span class="line">        # GPIO.output(LED1,False)#LED1亮</span><br><span class="line">        # GPIO.output(LED2,False)#LED1亮</span><br><span class="line"></span><br><span class="line">    def Motor_Backward(self):</span><br><span class="line">        print &apos;motor_backward&apos;</span><br><span class="line">        GPIO.output(self.ENA, True)</span><br><span class="line">        GPIO.output(self.ENB, True)</span><br><span class="line">        GPIO.output(self.IN1, False)</span><br><span class="line">        GPIO.output(self.IN2, True)</span><br><span class="line">        GPIO.output(self.IN3, False)</span><br><span class="line">        GPIO.output(self.IN4, True)</span><br><span class="line">        shutil.copy(&quot;/home/pi/DuerOS-Python-Client/app/resources/backward.mp3&quot;,</span><br><span class="line">                    &quot;/home/pi/DuerOS-Python-Client/temp.mp3&quot;)</span><br><span class="line">        print &quot;语音反馈&quot;</span><br><span class="line">        self.player.play(&apos;file://&#123;&#125;&apos;.format(&apos;/home/pi/DuerOS-Python-Client/temp.mp3&apos;))</span><br><span class="line">        os.remove(&quot;temp.mp3&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        # time.sleep(2)</span><br><span class="line">        # GPIO.output(LED1,True)#LED1灭</span><br><span class="line">        # GPIO.output(LED2,False)#LED2亮</span><br></pre></td></tr></table></figure>
+<p>左转、右转等操作的代码与前进、后台操作类似。代码可参考 Github</p>
+<h2 id="开始执行"><a href="#开始执行" class="headerlink" title="开始执行"></a>开始执行</h2><p>唤醒之后，可执行“方向前进”指令，看看效果。</p>
+<p>系列目录：</p>
+<p>《手把手教你打造智能语音机器人（0）-写在前面的话》</p>
+<p>《手把手教你打造智能语音机器人（1）-强大的 DuerOS 系统》</p>
+<p>《手把手教你打造智能语音机器人（2）-配置属于自己的语音交互机器人》</p>
+<p>《手把手教你打造智能语音机器人（3）-用语音控制机器人》</p>
+<p>《手把手教你打造智能语音机器人（4）-用 YOLO 算法搭建目标检测系统》</p>
+<p>《手把手教你打造智能语音机器人（5）-集成并运行目标检测系统》</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/CoolTech/">黑科技</a>
+            
+        </div>
+        
+
+        <div class="post-nav">
+            
+              <div class="post-nav-prev post-nav-item">下一篇：
+                <a href="/2019-06-05-step-by-step-building-smart-robot-4-md.html" >手把手教你打造智能语音机器人（4）-用 YOLO 算法搭建目标检测系统</a>
+              </div>
+              
+              
+              <div class="post-nav-next post-nav-item">上一篇：
+                <a href="/2019-06-05-step-by-step-building-smart-robot-2-md.html" >手把手教你打造智能语音机器人（2）-配置属于自己的语音交互机器人</a>
+              </div>
+            
+        </div>
+    </article>
+    
+    <p>本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    var disqus_config = function () {
+        this.page.url = 'http://zhmhhu.github.io/2019-06-05-step-by-step-building-smart-robot-3-md.html';
+        this.page.identifier = '2019-06-05-step-by-step-building-smart-robot-3-md.html';
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');
+        s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+        Disqus.</a></noscript>
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about"  title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="help" >急救中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        
+<!-- Tencent Analytics -->
+<script type="text/javascript" src="//tajs.qq.com/stats?sId=65912398" charset="UTF-8"></script>
+
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '12/24/2017',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>

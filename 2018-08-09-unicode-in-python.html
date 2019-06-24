@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<!--
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//                 拦截插件累计拦截逗比攻击"1381438"次！
+//         .............................................
+//                  佛祖保佑             永无BUG
+//          佛曰:
+//                  写字楼里写字间，写字间里程序员；
+//                  程序人员写程序，又拿程序换酒钱。
+//                  酒醒只在网上坐，酒醉还来网下眠；
+//                  酒醉酒醒日复日，网上网下年复年。
+//                  但愿老死电脑间，不愿鞠躬老板前；
+//                  奔驰宝马贵者趣，公交自行程序员。
+//                  别人笑我忒疯癫，我笑自己命太贱；
+//                  不见满街漂亮妹，哪个归得程序员？
+-->
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=http://zhmhhu.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://zhmhhu.github.io">
+<meta name="author" content="zhmhhu">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+<!-- 用户自定义的样式 -->
+<link rel="stylesheet" href="/css/myStyle.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>python语言中的字符编码问题 - 赵小生的博客</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="在具体的编程语言中，字符编码会存在具体的问题，比如，Python中的编码问题一度让开发者非常头疼。">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="博">博</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-archives"></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/help" title="帮助">
+            <i class="fa fa-question-circle"></i>
+            <span>帮助</span>
+        </a>
+        
+    </nav>
+</div>
+
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">赵小生的博客</h1>
+        <h3 class="cover-siteTitle">传播科技，关注人文</h3>
+        <p class="cover-siteDesc">写更少的代码，过更好的生活</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-weibo">
+                <a href="https://weibo.com/zhmhhu" target="_blank" title="weibo" ref="friend">
+                    <i class="fa fa-weibo"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-twitter">
+                <a href="https://twitter.com/zhmhhu" target="_blank" title="twitter" ref="friend">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </div>
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/zhmhhu" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">最新</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/coding" data-name="代码">代码</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/technology" data-name="科技">科技</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/humanity" data-name="人文">人文</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/talk" data-name="杂谈">杂谈</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/resource" data-name="资源">资源</a>
+                </li>
+            
+        
+        <li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+
+    </ul>
+</div>
+<div><img width="100%" src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu4ys17t69j30f007qdfx.jpg" alt="photos"/></div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="https://github.com/zhmhhu" target="_blank">
+                    <img width="48" src="/images/userpic.jpg" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="https://github.com/zhmhhu" target="_blank">赵小生</a>
+                    <span title="最后编辑于2018-08-09">2018-08-09</span>
+                </p>
+                <p>不会讲故事的程序员不是好的水利工程师</p>
+            </div>
+            <h2 class="post-title">python语言中的字符编码问题</h2>
+            <div class="post-meta">
+                本文总共5994个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它们的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>上一篇文章讲述了计算机中的字符编码问题，在具体的编程语言中，字符编码会存在具体的问题，比如，Python 中的编码问题一度让开发者非常头疼。</p>
+<h2 id="python-的默认编码"><a href="#python-的默认编码" class="headerlink" title="python 的默认编码"></a>python 的默认编码</h2><p>Python 的默认编码是 ASCII，一直到 python2.X 都是如此，如果开发者不指定具体的字符编码方式，那么默认就是 ASCII。为什么不使用更好的 Unicode？这一点，跟 python 的诞生背景有关。</p>
+<p>Python 的诞生时间是 1989 年，Unicode 于 1994 年才正式公布，在Python 诞生之初并无 Unicode 可用，只能选择 ASCII。后来为了适用于非英语系的用户，做了多方改进。</p>
+<p>如果不做修改，Python将使用 ASCII 为所有代码编码，包括注释。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import sys</span><br><span class="line">&gt;&gt;&gt; sys.getdefaultencoding()</span><br><span class="line">&apos;ascii&apos;</span><br></pre></td></tr></table></figure></p>
+<p>在编写 python 代码时如果不指定文件的编码方式，将默认使用 ASCII 编码。所以如果在代码中出现中文（包括注释），将会报错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#stringtest.py</span><br><span class="line"></span><br><span class="line">print &apos;你好&apos;</span><br><span class="line"></span><br><span class="line">C:\Python27\python.exe D:/MyGit/demo/test/test.py</span><br><span class="line">File &quot;D:/MyGit/demo/test/test.py&quot;, line 1</span><br><span class="line">SyntaxError: Non-ASCII character &apos;\xe4&apos; in file D:/MyGit/demo/test/test.py on line 1, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details</span><br></pre></td></tr></table></figure></p>
+<p>如果想在代码中使用中文，则一定要在代码开头（第一行或第二行）声明此文件的编码方式，比如编码方式设为 UTF-8<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br></pre></td></tr></table></figure></p>
+<p>其中第一行注释表示这是一个可以在 Unix/Linux/Mac 直接运行的程序，Windows 系统会忽略这个注释。</p>
+<p>这样，在代码中就可以使用中文了。</p>
+<h2 id="python中的编码解码"><a href="#python中的编码解码" class="headerlink" title="python中的编码解码"></a>python中的编码解码</h2><h3 id="str和unicode"><a href="#str和unicode" class="headerlink" title="str和unicode"></a>str和unicode</h3><p>python 语言中有两个表示字符串的对象，str，unicode。他们都是basestring 的子类，可见 str 与 unicode 是两种不同类型的字符串对象。</p>
+<p>同样都是字符串对象，为什么 Python 要搞两套的。这其实都是历史遗留问题。</p>
+<p>Python 的创始人 Guido van Rossum（人称龟叔）在开发初期并未预料到 Python 能发展成一个全球流行的语言，因此他一直都没有把支持全球各国语言当做重要的事情来做，所以就轻佻的把ASCII当做了默认编码。并且，他为了处理起来简单，居然把字节和字符串当做同一种东西来对待，即 <code>bytes == str</code>，任何字符串默认按照 ASCII 编码后以字节形式存储在计算机中。这可要了命了。</p>
+<p>当后来大家对支持汉字、日文、法语等语言的呼声越来越高时，Python 于是准备引入 Unicode，但若直接把默认编码改成 Unicode 的话很不现实， 因为很多软件就是基于之前的默认编码 ASCII 开发的，编码一换，那些软件的编码就都乱了。所以 Python 2 就直接 搞了一个新的字符类型，就叫 Unicode类型。于是，就有了 str 和 Unicode 并存的局面。</p>
+<p>str 是普通字符串（存储时其实就是字节串），使用默认方式编码，使用时一般需要解码成 unicode。Unicode 是 Unicode 字符串，默认使用 Unicode方式编码，使用时可以解码成需要的格式。</p>
+<p>这里提一下 python 开发中非常重要的两处设置。</p>
+<p>一个是编解码器的默认设置defaultencoding<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import sys</span><br><span class="line">&gt;&gt;&gt; sys.getdefaultencoding()</span><br><span class="line">&apos;ascii&apos;</span><br></pre></td></tr></table></figure></p>
+<p>另一个是声明在python文件头部的代码编码方式coding<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br></pre></td></tr></table></figure></p>
+<p>这两处设置在python的 str，unicode对象的encode和decode方法中，有非常重要的作用，直接影响到结果。<strong>下面的代码按照目前的设置进行，即defaultencoding为ascii，coding为utf-8</strong></p>
+<p>使用str()方法创建字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = str(&apos;你们&apos;)  #存储时按utf-8存储</span><br><span class="line">print repr(s)   #打印结果为&apos;\xe4\xbd\xa0\xe4\xbb\xac&apos;</span><br></pre></td></tr></table></figure></p>
+<p>使用unicode()方法创建的是unicode字符串，也可使用 u 标记。创建unicode字符串时，需指定字符串解码方式，否则，在显示时，按defaultencoding对字符串进行解码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">u1 = u&apos;你们&apos;</span><br><span class="line">u2 = unicode(&apos;你们&apos;)  </span><br><span class="line">print u1  #输出正确</span><br><span class="line">print u2  #存储时按utf-8存储，再按ascii解码，出错</span><br><span class="line">#UnicodeDecodeError: &apos;ascii&apos; codec can&apos;t decode byte 0xe4 in position 0: ordinal not in range(128)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">u3 = unicode(&apos;你们&apos;,&apos;utf-8&apos;)  #先按utf-8编码存储，再按utf-8解码</span><br><span class="line">print u3 #输出正确</span><br><span class="line">print repr(u3) #打印结果是 u&apos;\u4f60\u4eec&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">u4 = unicode(&apos;你们&apos;,&apos;gbk&apos;)  #先按utf-8编码存储，再按gbk解码</span><br><span class="line">print u4 #打印结果是 浣犱滑</span><br><span class="line">print repr(u4) #打印结果是 u&apos;\u6d63\u72b1\u6ed1&apos; 是 浣犱滑 三个字的unicode编码</span><br></pre></td></tr></table></figure>
+<p>出现上述结果的原因是，字符串“你们”，按照 uft-8 编码存储时，在内存中，是<code>&#39;\xe4\xbd\xa0\xe4\xbb\xac&#39;</code>,这一点通过第一个例子可以看到。在使用gbk解码时，其中 <code>e4bd</code> 对应的是字符“浣”，<code>a0e4</code> 对应的是字符“犱”，<code>bbac</code> 对应的是字符“滑”。于是，解码之后的结果变成了“浣犱滑”。</p>
+<p>总之，任何字符串在存储是按照用户设定的 coding 值选择对应的编码方式进行存储，unicode 字符串按照 unicode 方式存储，在解码时如不指定解码方式，将按照 defaultencoding 对字符串进行解码。</p>
+<h3 id="decode-和encode"><a href="#decode-和encode" class="headerlink" title="decode()和encode()"></a>decode()和encode()</h3><p>str.decode() 用于将字符串解码成指定的格式，如果不指定解码方式，将使用默认的ascii进行解码。</p>
+<p>unicode.encode() 用于将标准的 unicode 编码成指定的格式，如果不指定编码方式，将使用默认的 defaultencoding 进行编码。</p>
+<p>这里的解码可以理解为把二进制字节码码转换成可以显示的字符串，编码可以理解为把字符串按照约定的方式转换成二进制字节码。</p>
+<p>看下面两个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = str(&apos;你们&apos;)</span><br><span class="line">print s.decode(&apos;utf-8&apos;) #输出正确</span><br><span class="line">print s.decode() #出错</span><br><span class="line">#UnicodeDecodeError: &apos;ascii&apos; codec can&apos;t decode byte 0xe4 in position 0: ordinal not in range(128)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">u=u&apos;你们&apos;</span><br><span class="line">print u.encode(&apos;utf-8&apos;)  #输出正确</span><br><span class="line">print u.encode(&apos;gbk&apos;)  #输出乱码，编码时为utf-8,解码时为gbk</span><br><span class="line">print u.encode() #出错，编码时为utf-8,解码时为ascii</span><br><span class="line">#UnicodeEncodeError: &apos;ascii&apos; codec can&apos;t encode characters in position 0-1: ordinal not in range(128)</span><br></pre></td></tr></table></figure>
+<p>总结，str 字符串存储和 unicode 字符串存储时，按照 coding 设置编码，str.decode() 把本身解码成指定格式，unicode.encode()把本身编码成指定格式，如果不指定编码格式，将使用 defaultencoding 进行编码。如果编码解码方式不一致，将会出错或乱码。</p>
+<p>另有str.encode() ，unicode.decode()，这两个方法没什么用。因为str是已经编码了的字符串，无需再次编码。unicode 本身已经解码成 unicode了，无需再次解码。但 python的就是这么好玩，为了保持对称，设计了这两个方法。</p>
+<p>官方文档如此描述：str.encode(e) is the same as unicode(str).encode(e). This is useful since code that expects Unicode strings should also work when it is passed ASCII-encoded 8-bit strings(from Guido van Rossum) .</p>
+<p>这段话大概意思是说 encode 方法本来是被 unicode 调用的，但如果不小心被作为 str 对象的方法调用时，并且这个 str 对象正好是 ASCII 编码的（ASCII 这一段和 unicode 是一样的），也应该让他成功。这就是str.encode 方法的一个用处。</p>
+<p>类似地，把光用 ASCII 组成的 unicode 再 decode 是一样的道理，因为好像几乎任何编码里 ASCII 都没变。因此这样的操作等于没做。 这些方法没什么用，实际使用中往往会出错，比如下面两个。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">str.encode() ，首先使用默认的编码方式将str进行编码，然后使用指定的方式将对象解码</span><br><span class="line"></span><br><span class="line">s.encode(&quot;utf-8&quot;) #等价于 s.decode(defaultencoding).encode(&quot;utf-8&quot;)</span><br><span class="line"></span><br><span class="line">unicode.decode()，首先使用默认的编码方式将对象进行解码，再用指定的方式将对象编码</span><br><span class="line"></span><br><span class="line">u.decode(&quot;utf-8&quot;) #等价于 u.encode(defaultencoding).decode(&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="关于requests库"><a href="#关于requests库" class="headerlink" title="关于requests库"></a>关于requests库</h3><p>requests 库在写网络爬虫的时候经常用到，使用起来非常方便。</p>
+<p>Request 对象在访问服务器后会返回一个 Response 对象，这个对象将返回的Http 响应字节码保存到 content 属性中。content 本身是未编码的二进制数据，如果是文本文件，则自动按 str 的默认方式编码。</p>
+<p>Response 对象还有一个属性 text，它是一个 unicode 字符串对象。如果不加处理直接访问，常常会发生乱码。因为 Response 对象会通过另一个属性 encoding 来将 content 字节码编码成 unicode，而这个 encoding 属性居然是 responses 自己猜出来的。</p>
+<p>官方文档：</p>
+<p>text<br>Content of the response, in unicode.</p>
+<p>If Response.encoding is None, encoding will be guessed using chardet.</p>
+<p>The encoding of the response content is determined based solely on HTTP headers, following RFC 2616 to the letter. If you can take advantage of non-HTTP knowledge to make a better guess at the encoding, you should set r.encoding appropriately before accessing this property.</p>
+<p>responses 根据 http 头文件获取 encoding 设置，大多数情况是正确的，但有时也有例外。所以要么你使用 content 然后重新解码，要么把 encoding 设置正确。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: UTF-8 -*-</span><br><span class="line">import requests</span><br><span class="line">url = &quot;http://xxx.xxx.xxx&quot; #gbk格式编码的网页</span><br><span class="line">response = requests.get(url)</span><br><span class="line">response.encoding = &apos;gbk&apos;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print response.content   #未编码的二进制数据，如果是文本文件，则自动按str的默认方式解码,此处按 ASCII 解码，结果显示乱码,</span><br><span class="line">print response.content.decode(&apos;gbk&apos;) #按“gbk”解码之后，显示正确</span><br><span class="line">print response.text #显示正确</span><br></pre></td></tr></table></figure></p>
+<p><br>在 python 语言中，存储在磁盘中的二进制文本，以字符串的形式显示时，一定要指定其编码方式，默认的编码方式就是 defaultencoding 所对应的值，为了方便起见，一开始就把 defaultencoding 设置为 utf-8 形式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(&apos;utf8&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>以免使用默认的编码方式，造成中文乱码。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">标签：
+            
+            <a href="/tags/python/">python</a>
+            
+        </div>
+        
+
+        <div class="post-nav">
+            
+              <div class="post-nav-prev post-nav-item">下一篇：
+                <a href="/2018-08-23-unicode-in-javascript-md.html" >javascript语言中的字符编码</a>
+              </div>
+              
+              
+              <div class="post-nav-next post-nav-item">上一篇：
+                <a href="/2018-08-09-you-donot-know-what-unicode-is.html" >你所不知道的unicode字符编码</a>
+              </div>
+            
+        </div>
+    </article>
+    
+    <p>本文代表个人观点，内容仅供参考。若有不恰当之处，望不吝赐教！</p>
+    
+    
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    var disqus_config = function () {
+        this.page.url = 'http://zhmhhu.github.io/2018-08-09-unicode-in-python.html';
+        this.page.identifier = '2018-08-09-unicode-in-python.html';
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, disqus_shortname = 'zhmhhu', s = d.createElement('script');
+        s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+        Disqus.</a></noscript>
+
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <a href="/about"  title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <!-- 自定义链接 -->
+            <a href="/help" title="help" >急救中心</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/links" title="友情链接">友情链接</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/app" title="App下载">App下载</a>
+        </p>
+        <p>
+            本站点采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2017 基于<a href="http://hexo.io" target="_blank">Hexo</a>搭建
+            ，主题&nbsp<a href="https://github.com/tangkunyin/hexo-theme-jsimple" target="_blank">JSimple</a>
+            ，Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+        </p>
+        
+<!-- Tencent Analytics -->
+<script type="text/javascript" src="//tajs.qq.com/stats?sId=65912398" charset="UTF-8"></script>
+
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '12/24/2017',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>
